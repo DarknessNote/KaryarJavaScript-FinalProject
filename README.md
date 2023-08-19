@@ -1,3 +1,3 @@
-# KaryarJavaScript-FinalProject
+# Karyar JavaScript - Final Project
 The final project of the Karyar JavaScript course 
-an example of the assistant extension
+an example of the Dastyar extension
