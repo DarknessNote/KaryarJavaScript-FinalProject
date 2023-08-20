@@ -1,0 +1,346 @@
+/* ------------- IranSansX FaNum ------------- */
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../assets/Fonts/IRANSansX/IRANSansXFaNum-Light.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../assets/Fonts/IRANSansX/IRANSansXFaNum-Medium.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../assets/Fonts/IRANSansX/IRANSansXFaNum-DemiBold.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../assets/Fonts/IRANSansX/IRANSansXFaNum-ExtraBold.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../assets/Fonts/IRANSansX/IRANSansXFaNum-Black.woff2') format('woff2');   	 
+}
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../assets/Fonts/IRANSansX/IRANSansXFaNum-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../assets/Fonts/IRANSansX/IRANSansXFaNum-Regular.woff2') format('woff2');
+}
+
+/* ------------- Yekan Bakh FaNum ------------- */
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 100;
+	src: url('../assets/Fonts/YekanBakh/YekanBakhFaNum-Thin.woff2') format('woff2');	
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../assets/Fonts/YekanBakh/YekanBakhFaNum-Light.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../assets/Fonts/YekanBakh/YekanBakhFaNum-Regular.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../assets/Fonts/YekanBakh/YekanBakhFaNum-SemiBold.woff2') format('woff2'); 		 
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../assets/Fonts/YekanBakh/YekanBakhFaNum-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../assets/Fonts/YekanBakh/YekanBakhFaNum-ExtraBold.woff2') format('woff2');  	 
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../assets/Fonts/YekanBakh/YekanBakhFaNum-Black.woff2') format('woff2');		 
+}
+
+/* ------------- Peyda ------------- */
+
+@font-face {
+	font-family: Peyda;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../assets/Fonts/Peyda/peydaWeb-light.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Peyda;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../assets/Fonts/Peyda/PeydaWeb-Medium.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Peyda;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../assets/Fonts/Peyda/PeydaWeb-SemiBold.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Peyda;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../assets/Fonts/Peyda/PeydaWeb-ExtraBold.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Peyda;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../assets/Fonts/Peyda/PeydaWeb-Black.woff2') format('woff2');   	 
+}
+
+@font-face {
+	font-family: Peyda;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../assets/Fonts/Peyda/PeydaWeb-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: Peyda;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../assets/Fonts/Peyda/PeydaWeb-Regular.woff2') format('woff2');
+}
+
+/* ------------- Pelak FaNum ------------- */
+@font-face {
+	font-family: Pelak;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../assets/Fonts/Pelak/PelakFA-light.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Pelak;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../assets/Fonts/Pelak/PelakFA-Medium.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Pelak;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../assets/Fonts/Pelak/PelakFA-SemiBold.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Pelak;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../assets/Fonts/Pelak/PelakFA-ExtraBold.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Pelak;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../assets/Fonts/Pelak/PelakFA-Black.woff2') format('woff2');   	 
+}
+
+@font-face {
+	font-family: Pelak;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../assets/Fonts/Pelak/PelakFA-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: Pelak;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../assets/Fonts/Pelak/PelakFA-Regular.woff2') format('woff2');
+}
+
+/* ------------- Morabba ------------- */
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../assets/Fonts/Morabba/Morabba-Light.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../assets/Fonts/Morabba/Morabba-Medium.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../assets/Fonts/Morabba/Morabba-SemiBold.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../assets/Fonts/Morabba/Morabba-ExtraBold.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../assets/Fonts/Morabba/Morabba-Black.woff2') format('woff2');   	 
+}
+
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../assets/Fonts/Morabba/Morabba-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../assets/Fonts/Morabba/Morabba-Regular.woff2') format('woff2');
+}
+
+/* ------------- Kalameh FaNum ------------- */
+@font-face {
+	font-family: Kalameh;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../assets/Fonts/Kalameh/KalamehWeb-FaNum-Light.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Kalameh;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../assets/Fonts/Kalameh/KalamehWeb-FaNum-Medium.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Kalameh;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../assets/Fonts/Kalameh/KalamehWeb-FaNum-SemiBold.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: Kalameh;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../assets/Fonts/Kalameh/KalamehWeb-FaNum-ExtraBold.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: Kalameh;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../assets/Fonts/Kalameh/KalamehWeb-FaNum-Black.woff2') format('woff2');   	 
+}
+
+@font-face {
+	font-family: Kalameh;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../assets/Fonts/Kalameh/KalamehWeb-FaNum-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: Kalameh;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../assets/Fonts/Kalameh/KalamehWeb-FaNum-Regular.woff2') format('woff2');
+}
+
+
+/* ------------- IranYekan FaNum ------------- */
+@font-face {
+	font-family: IranYekan;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../assets/Fonts/IranYekan/iranyekanweblightfanum.woff') format('woff2');		 
+}
+
+@font-face {
+	font-family: IranYekan;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../assets/Fonts/IranYekan/IranYekanWeb-FaNum-Medium.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: IranYekan;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../assets/Fonts/IranYekan/IranYekanWeb-FaNum-SemiBold.woff2') format('woff2');	 
+}
+
+@font-face {
+	font-family: IranYekan;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../assets/Fonts/IranYekan/IranYekanWeb-FaNum-ExtraBold.woff2') format('woff2');		 
+}
+
+@font-face {
+	font-family: IranYekan;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../assets/Fonts/IranYekan/IranYekanWeb-FaNum-Black.woff2') format('woff2');   	 
+}
+
+@font-face {
+	font-family: IranYekan;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../assets/Fonts/IranYekan/IranYekanWeb-FaNum-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: IranYekan;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../assets/Fonts/IranYekan/IranYekanWeb-FaNum-Regular.woff2') format('woff2');
+}
