@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,114 @@
     <title>دستیار</title>
 </head>
 <body>
-    
+    <header>
+        <!--------------------- Title --------------------->
+        <div class="title">
+            <img src="./assets/logo.webp" alt="logo">
+            <h1>دستیار</h1>
+        </div>
+
+        <!--------------------- Settings --------------------->
+        <div class="settings">
+            <button><ion-icon name="settings-outline"></ion-icon></button>
+            <div class="settings-container">
+                <ion-icon name="caret-up-outline" class="caret-up"></ion-icon>
+                <!--- Settings Bar --->
+                <div class="settings-bar">
+                    <div class="settings-bar-container">
+                        <!--- Settings Dark Mode --->
+                        <div class="dark-mode">
+                            <span>دارک مود</span>
+                            <div class="dark-mode-toggle">
+                                <ion-icon name="moon-outline"></ion-icon>
+                                <input type="checkbox" name="dark-mode" data-mode-checkbox>
+                                <ion-icon name="sunny-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <!--- Settings Change Fonts --->
+                        <div class="change-fonts">
+                            <span>فونت</span>
+                            <div class="dropdown-fonts">
+                                <div class="select">
+                                    <span class="selected">پیدا</span>
+                                    <div class="caret"><ion-icon name="caret-down-outline"></ion-icon></div>
+                                </div>
+                                <ul class="font-list">
+                                    <li class="f-peyda active" data-font="Peyda">پیدا</li>
+                                    <li class="f-pelak" data-font="Pelak">پلاک</li>
+                                    <li class="f-iransans" data-font="IRANSansX">ایران سنس</li>
+                                    <li class="f-morabba" data-font="Morabba">مربع</li>
+                                    <li class="f-kalameh" data-font="Kalameh">کلمه</li>
+                                    <li class="f-yekanbakh" data-font="YekanBakh">یکان یخ</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--- Settings Change Background --->
+                        <div class="change-background">
+                            <span>انتخاب پس زمینه</span>
+
+                            <!--- Background Colors--->
+                            <div class="style colors">
+                                <button type="button" data-color="#96B6C5"></button>
+                                <button type="button" data-color="#ADC4CE"></button>
+                                <button type="button" data-color="#EEE0C9"></button>
+                                <button type="button" data-color="#F1F0E8"></button>
+
+                                <button type="button" data-color="#7286D3"></button>
+                                <button type="button" data-color="#8EA7E9"></button>
+                                <button type="button" data-color="#E5E0FF"></button>
+                                <button type="button" data-color="#FFF2F2"></button>
+
+                                <button type="button" data-color="#716F81"></button>
+                                <button type="button" data-color="#F6AE99"></button>
+                                <button type="button" data-color="#B97A95"></button>
+                                <button type="button" data-color="#716F81"></button>
+
+                                <button type="button" data-color="#900C3F"></button>
+                                <button type="button" data-color="#C70039"></button>
+                                <button type="button" data-color="#F94C10"></button>
+                                <button type="button" data-color="#F8DE22"></button>
+
+                                <button type="button" data-color="#222831"></button>
+                                <button type="button" data-color="#393E46"></button>
+                                <button type="button" data-color="#FFD369"></button>
+                                <button type="button" data-color="#F05454"></button>
+                            </div>
+
+                            <!--- Background Images--->
+                            <div class="style images">
+                                    <button type="button" class="img-btn" data-img="https://wallpapercave.com/download/4k-pc-wallpapers-wp4676582"></button>
+                                    <button type="button" class="img-btn" data-img="https://wallpapercave.com/download/4k-pc-wallpapers-wp4676613"></button>
+                                    <button type="button" class="img-btn" data-img="https://wallpapercave.com/download/your-name-wallpapers-wp1937307"></button>
+                                    <button type="button" class="img-btn" data-img="https://wallpapercave.com/download/mercedes-amg-a-45-2019-wallpapers-wp4299686"></button>
+                            </div>
+                            <span class="net-notice">برای مشاهده تصاویر پس زمینه باید به اینترنت متصل باشید</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <!--------------------- Search Bar --------------------->
+        <div class="search-bar">
+            <div class="search-input">
+                <img src="./assets/Icons/search_FILL0_wght400_GRAD0_opsz48.svg" alt="search-icon" width="20px">
+                <input type="text" name="search-input" placeholder="جستجو در گوگل" data-search-input>
+                <img src="./assets/google-logo.png" alt="google-logo" width="20px">
+            </div>
+            <button class="search-btn">جستجو</button>
+        </div>
+        <div class="time-and-weather">
+            <div class="time"></div>
+            <div class="weather"></div>
+        </div>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="module" src="./js/script.js"></script>
 </body>
 </html>
