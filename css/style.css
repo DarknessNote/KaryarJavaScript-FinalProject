@@ -11,9 +11,11 @@
     --secondary-color: #AFD3E2;
     --input-color: #dfe4e9;
     --button-color: #366ED8;
+    --button-color-2: #FFC436;
     --border-color-1: #0D1282;
     --border-color-2: #13334C;
     --border-color-3: #13334C;
+    --border-color-4: #F1F6F9;
     --hover-color-1: #b9b9b9;
     --hover-button-color:#07A4B5;
     --text-hover-1: #fff;
@@ -26,6 +28,10 @@
     --icon-color-1: #393E46;
     --icon-color-2:#0D1282;
     --icon-color-3:#F1F6F9;
+    --apply-color-1:#D3DE32;
+    --apply-color-hover-1:#C3EDC0;
+    --cancell-color-1:#FF2442;
+    --cancell-color-hover-1:#FF8787;
 
     /* Typography */
     --font-family: Peyda;
@@ -171,6 +177,7 @@ header .settings .settings-container{
     color: var(--text-color-2);
     border: 1px  var(--border-color-1) solid;
     padding: 20px;
+    z-index: 10;
 }
 .settings-bar-container{
     display: flex;
@@ -383,6 +390,158 @@ main .search-bar button:hover{
 
 .time-and-weather{
     display: flex;
-    justify-content: space-between;
     margin-top: 10px;
+    gap: 15px;
+}
+
+.time,.weather{
+    position: relative;
+    width: 49%;
+    height: 150px;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    padding: 10px;
+    color: var(--text-color-2);
+}
+.time{
+    display: flex;
+    flex-direction: column;
+}
+.time-header{
+    display: flex;
+    align-items: center;
+    height: 20px;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.time-header button{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.time-header button:hover{
+    background-color: var(--hover-button-color);
+    color: var(--text-hover-1);
+}
+.time .change-time-zone{
+    display: none;
+    position: absolute;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    background-color: #19376D;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+.time .change-time-zone.active{
+    display: flex;
+}
+.time-settings-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.time-settings-container .select{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: var(--button-color);
+    border-radius: 10px;
+    width: 90%;
+    border: 1px var(--border-color-4) solid;
+    color: var(--text-color-1);
+}
+.time-settings-container input{
+    color: var(--text-color-1);
+}
+.time-settings-container input::placeholder{
+    color: var(--text-color-1);
+    font-size: 10px;
+}
+
+.zone-list{
+    display: none;
+    height: 80px;
+    width: 90%;
+    overflow-y: scroll;
+    font-size: 10px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+.zone-list.active{
+    display: block;
+}
+.zone-list li{
+    padding: 5px;
+    font-size: 15px;
+    overflow-x: hidden;
+}
+.zone-list li:hover{
+    background-color: var(--hover-color-1);
+}
+.time-settings-button{
+    width: 90%;
+    display: flex;
+    gap: 10px;
+}
+.time-settings-button.disable{
+    display: none;
+}
+.time-settings-button button{
+    width: 90%;
+    padding: 5px;
+    border-radius: 5px;
+    color: var();
+}
+.time-zone-apply{
+    background-color: var(--apply-color-1);
+}
+.time-zone-cancell{
+    background-color: var(--cancell-color-1);
+    color: var(--text-color-1);
+}
+.time-zone-apply:hover{
+    background-color: var(--apply-color-hover-1);
+}
+.time-zone-cancell:hover{
+    background-color: var(--cancell-color-hover-1);
+    color: var(--text-color-1);
+}
+.time-zone-title{
+    font-size: 10px;
+}
+.times{
+    height: 100%;
+    padding-block-start: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.show-time{
+    font-size: 30px;
+    font-weight: 900;
+}
+.timer a{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    
+}
+.timer a:hover{
+    background-color: var(--hover-button-color);
+    color: var(--text-hover-1);
+    
+}
+.timer span{
+    font-size: 10px;
 }

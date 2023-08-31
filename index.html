@@ -109,7 +109,36 @@
             <button class="search-btn">جستجو</button>
         </div>
         <div class="time-and-weather">
-            <div class="time"></div>
+            <div class="time">
+                <div class="time-header">
+                    <button><ion-icon name="settings-outline"></ion-icon></button>
+                    <div class="time-zone-title"></div>
+                </div>
+                <div class="change-time-zone">
+                    <div class="time-settings-container">
+                        <div class="select">
+                            <input type="text" name="search-time-zone" id="search-time-zone" placeholder="جستجو کنید">
+                        </div>
+                        <ul class="zone-list">
+                            
+                        </ul>
+                        <div class="time-settings-button">
+                            <button class="time-zone-apply" data-timezone-apply>ثبت</button>
+                            <button class="time-zone-cancell" data-timezone-cancell>انصراف</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="times">
+                    <div class="show-time"></div>
+                    <div class="timer">
+                        <a href="https://www.bahesab.ir/time/timer">
+                            <ion-icon name="stopwatch-outline"></ion-icon>
+                            <span>زمان سنج</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
             <div class="weather"></div>
         </div>
     </main>
