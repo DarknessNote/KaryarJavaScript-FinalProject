@@ -420,7 +420,7 @@ const iranianProvincesFn = [
   "fars",
   "ghazvin",
   "qom",
-  "kurdistan",
+  "sanandaj",
   "kerman",
   "kermanshah",
   "yasuj",
@@ -453,7 +453,7 @@ const iranianProvincesFa = [
   "فارس",
   "قزوین",
   "قم",
-  "کردستان",
+  "سنندج",
   "کرمان",
   "کرمانشاه",
   "یاسوج",
@@ -491,12 +491,42 @@ function applyWeatherZone() {
   weatherSettingsDiv.classList.remove("active");
 
 }
+functions.addEventOnElem(weatherZoneCancelBtn, "click", cancellWeatherZone);
+function cancellWeatherZone() {
+  let weatherZoneValue = localStorage.getItem("WeatherZone");
+  if (weatherZoneValue) {
+    let [getweatherLiDataSet, getweatherLocation] = weatherZoneValue.split(',');
+    getWeatherByRegion(getweatherLiDataSet);
+    locationTitle.textContent = getweatherLocation;
+    weatherSelectedZone.textContent = getweatherLocation
+  }
+  else {
+    getWeatherByRegion(defaultRegion);
+  }
+  weatherSettingsDiv.classList.remove("active");
+
+}
 function kelvinToCelsius(kelvin) {
   return Math.round(kelvin - 273.15);
 }
+function numberToPersian(number) {
+  const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  const numberString = String(number);
+  let persianNumber = '';
 
+  for (let i = 0; i < numberString.length; i++) {
+    const char = numberString.charAt(i);
+    if (/\d/.test(char)) {
+      persianNumber += persianDigits[Number(char)];
+    } else {
+      persianNumber += char;
+    }
+  }
+
+  return persianNumber;
+}
 function getWeatherByRegion(region) {
-  const apiKey = "b63340d9356173a8046c8621bc379ece";
+  const apiKey = "db374962615acbaf4e4c839c9960e0a5";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${region},IR&appid=${apiKey}`;
 
   fetch(apiUrl)
@@ -504,26 +534,30 @@ function getWeatherByRegion(region) {
     .then((weatherData) => {
       const temperatureCelsius = kelvinToCelsius(weatherData.main.temp);
 
-      console.log(`شهر: ${weatherData.name}`);
-      console.log(`شهر: ${weatherData.weather[0].description}`);
+
       if (weatherData.weather[0].description == "scattered clouds" && weatherData.weather[0].description == "few clouds") {
         displayWeatherIcon.name = "cloudy-outline";
       }
       else if (weatherData.weather[0].description == "clear sky") {
         displayWeatherIcon.name = "sunny-outline";
       }
-      displayWeather.innerText = temperatureCelsius
+      let faNumbersTemperatureCelsius = numberToPersian(temperatureCelsius);
+      displayWeather.innerText = faNumbersTemperatureCelsius;
+
       if (temperatureCelsius >= 36) {
-        weatherDescription.innerText = "هوا خیلی گرمه 🔥"
+        weatherDescription.innerText = "هوا خیلی گرمه 🔥";
       }
       else if (30 <= temperatureCelsius || temperatureCelsius >= 35) {
-        weatherDescription.innerText = "هوا گرمه 🌞"
+        weatherDescription.innerText = "هوا گرمه 🌞";
       }
       else if (25 <= temperatureCelsius || temperatureCelsius >= 29) {
-        weatherDescription.innerText = "هوا نسبتا گرمه 🌤"
+        weatherDescription.innerText = "هوا نسبتا گرمه 🌤";
       }
       else if (19 <= temperatureCelsius || temperatureCelsius >= 24) {
-        weatherDescription.innerText = "هوا عالیه ☁️"
+        weatherDescription.innerText = "هوا خوبه ☁️";
+      }
+      else if (10 <= temperatureCelsius || temperatureCelsius >= 18) {
+        weatherDescription.innerText = "هوا عالیه ☁️";
       }
     })
     .catch((error) => {
@@ -542,5 +576,232 @@ if (weatherZoneValue) {
 else {
   getWeatherByRegion(defaultRegion);
 }
+////////////////////////////////////////////////////////////////////////////////
+//Favorite sites
+const addFavoriteSiteModal = document.querySelector(".add-fav-site-modal");
+const closeAddFavBtn = document.querySelector("[data-close-fav-inputs]");
+const addFavUrlInput = document.querySelector("[data-fav-url-input]");
+const addFavUrlTitleInput = document.querySelector("[data-fav-title-input]");
+const submitFavSiteBtn = document.querySelector("[data-submit-fav-input]");
+const addFavoriteSiteModalTitle = document.querySelector(".add-fav-site-form-input h3");
+
+let favoriteSites = [];
+const allfavoritSites = document.querySelectorAll(".favorite-sites .f-site");
+const storedFavoriteSites = localStorage.getItem("addedFavoriteSites");
+if (storedFavoriteSites) {
+  favoriteSites = JSON.parse(storedFavoriteSites);
+  const parsedFavoriteSites = JSON.parse(storedFavoriteSites);
+  for (const favSite of parsedFavoriteSites) {
+    for (const site of allfavoritSites) {
+      if (site.dataset.favsite === favSite.id) {
+        const addFavsiteIcon = site.querySelector(".add-favsite-icon");
+        if (addFavsiteIcon) {
+          addFavsiteIcon.remove();
+        }
+        site.innerHTML = `
+        <a href="${favSite.siteLink}" class="f-site-added">
+          <img
+            src=""
+            alt="favicon"
+            width="30px"
+          />
+          <span>${favSite.siteTitle}</span>
+        </a>`;
+        getFavicon(favSite.faviconLink, site);
+        checkFavSiteAdded(site);
+      }
+    }
+  }
+}
+let favSiteElement;
+function checkFavoriteSiteDiv() {
+  const favoriteSiteDivs = Array.from(document.querySelectorAll(".f-site"));
+
+  favoriteSiteDivs.forEach(div => {
+    const addFavsiteIcon = div.querySelector(".add-favsite-icon");
+    if (addFavsiteIcon) {
+      addFavsiteIcon.addEventListener("click", clickHandler);
+    }
+    div.addEventListener("click", clickHandler);
+  });
+
+  function clickHandler(e) {
+    const hasAddFavsiteIcon = e.target.closest(".f-site").querySelector(".add-favsite-icon");
+    if (hasAddFavsiteIcon) {
+      addFavoriteSiteModal.style.display = "block";
+      submitFavSiteBtn.innerText = "افزودن";
+      addFavoriteSiteModalTitle.innerText = "افزودن سایت مورد علاقه";
+      favSiteElement = e.target.closest(".f-site");
+    }
+  }
+}
+
+checkFavoriteSiteDiv();
 
 
+functions.addEventOnElem(closeAddFavBtn, "click", closeFavSiteModal);
+function closeFavSiteModal() {
+  addFavoriteSiteModal.style.display = "none";
+  addFavUrlInput.value = "";
+  addFavUrlTitleInput.value = "";
+}
+
+functions.addEventOnElem(submitFavSiteBtn, "click", submitFavSite);
+functions.addEventOnElem(addFavUrlInput, "keypress", submitKeyFavSite);
+functions.addEventOnElem(addFavUrlTitleInput, "keypress", submitKeyFavSite);
+function submitKeyFavSite(e) {
+  if (e.key === "Enter" && addFavUrlInput.value != "") {
+    submitFavSite();
+  }
+}
+
+function submitFavSite() {
+  if (favSiteElement && addFavUrlInput.value !== "") {
+    let checkUrl = addFavUrlInput.value;
+    if (!checkUrl.startsWith("http://") && !checkUrl.startsWith("https://")) {
+      checkUrl = "http://" + checkUrl;
+    }
+    const addFavsiteIcon = favSiteElement.querySelector(".add-favsite-icon");
+    favoriteSites.forEach((item, index) => {
+      if (item.id == favSiteElement.dataset.favsite) {
+        favoriteSites.splice(index, 1);
+        localStorage.removeItem('addedFavoriteSites');
+        localStorage.setItem('addedFavoriteSites', JSON.stringify(favoriteSites));
+      }
+    });
+    if (addFavsiteIcon) {
+      addFavsiteIcon.remove();
+    }
+    favSiteElement.innerHTML = `
+      <a href="${checkUrl}" class="f-site-added">
+        <img
+          src=""
+          alt="favicon"
+          width="30px"
+        />
+        <span>${addFavUrlTitleInput.value}</span>
+      </a>`;
+    getFavicon(addFavUrlInput.value, favSiteElement);
+    let favoriteSitesData = {
+      id: favSiteElement.dataset.favsite,
+      siteLink: checkUrl,
+      siteTitle: addFavUrlTitleInput.value,
+      faviconLink: addFavUrlInput.value
+    }
+    favoriteSites.push(favoriteSitesData);
+    localStorage.setItem("addedFavoriteSites", JSON.stringify(favoriteSites));
+    checkFavSiteAdded(favSiteElement);
+    addFavoriteSiteModal.style.display = "none";
+    addFavUrlInput.value = "";
+    addFavUrlTitleInput.value = "";
+  } else {
+    alert("لطفاً آدرس سایت را وارد کنید");
+  }
+}
+
+function getFavicon(url, elem) {
+  const faviconUrl = `https://api.faviconkit.com/${url}/57`;
+  elem.querySelector("img").src = faviconUrl;
+}
+
+const deleteFavSiteModal = document.querySelector(".delete-fav-site-modal");
+
+function checkFavSiteAdded(favSiteElement) {
+  if (favSiteElement) {
+    let favSiteAdded = favSiteElement.closest(".f-site-colum");
+    favSiteAdded.addEventListener("mouseenter", showFavSetting);
+    favSiteAdded.addEventListener("mouseleave", hideFavSetting);
+  }
+}
+let favSiteElementForDelete;
+let favSiteElementForEdite;
+function showFavSetting(e) {
+  const settingsElement = e.target.closest(".f-site-colum");
+  const editeBtn = settingsElement.querySelector("[data-edit-favsite]");
+  const trashBtn = settingsElement.querySelector("[data-delete-favsite]");
+  editeBtn.style.visibility = "visible";
+  trashBtn.style.visibility = "visible";
+
+  if (editeBtn || trashBtn) {
+    const deleteModalTitle = document.querySelector(".delete-modal-container span")
+    functions.addEventOnElem(trashBtn, "click", showDeleteFavSiteModal);
+    function showDeleteFavSiteModal(e) {
+      deleteFavSiteModal.style.display = "block";
+      const parentElement = e.target.parentNode.parentNode;
+      const favSiteElement = parentElement.querySelector('.f-site');
+      favSiteElementForDelete = favSiteElement;
+      const editUrl = favSiteElementForDelete.querySelector(".f-site-added");
+      let hrefValue = editUrl.getAttribute("href");
+      hrefValue = hrefValue.replace("http://", "").replace("https://", "");
+      deleteModalTitle.innerText = hrefValue;
+    }
+    const editTitleModal = document.querySelector(".add-fav-site-form-input h3");
+    const editModalBtnText = document.querySelector("[data-submit-fav-input]");
+    const editFavSiteTitle = document.querySelector("[data-fav-title-input]");
+    const editFavSiteUrl = document.querySelector("[data-fav-url-input]");
+    functions.addEventOnElem(editeBtn, "click", showEditFavSiteModal);
+    function showEditFavSiteModal(e) {
+      addFavoriteSiteModal.style.display = "block";
+      const parentElement = e.target.parentNode.parentNode;
+      const favSiteElem = parentElement.querySelector('.f-site');
+      favSiteElementForEdite = favSiteElem;
+      favSiteElement = favSiteElem;
+      editTitleModal.innerText = "ویرایش سایت مورد علاقه";
+      editModalBtnText.innerText = "ویرایش";
+      const editUrl = favSiteElementForEdite.querySelector(".f-site-added");
+      let hrefValue = editUrl.getAttribute("href");
+      hrefValue = hrefValue.replace("http://", "").replace("https://", "");
+      editFavSiteUrl.value = hrefValue;
+      const editSpan = favSiteElementForEdite.querySelector(".f-site-added span");
+      editFavSiteTitle.value = editSpan.innerText;
+    }
+  }
+}
+
+function hideFavSetting(e) {
+  const settingsElement = e.target.closest(".f-site-colum");
+  const editeBtn = settingsElement.querySelector("[data-edit-favsite]");
+  const trashBtn = settingsElement.querySelector("[data-delete-favsite]");
+
+  editeBtn.style.visibility = "hidden";
+  trashBtn.style.visibility = "hidden";
+}
+
+const deleteModalCancellBtn = document.querySelector("[data-cancell-fav-btn]");
+functions.addEventOnElem(deleteModalCancellBtn, "click", cancellDeleteModal);
+function cancellDeleteModal() {
+  deleteFavSiteModal.style.display = "none";
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    if (deleteFavSiteModal.style.display === "block") {
+      deleteFavSiteModal.style.display = "none";
+    }
+  }
+});
+
+const deleteModalApplyBtn = document.querySelector("[data-delete-fav-btn]");
+deleteModalApplyBtn.addEventListener("click", applyDeleteFavSite);
+
+function applyDeleteFavSite() {
+  favSiteElementForDelete.innerHTML = `
+    <ion-icon class="add-favsite-icon" name="add-outline"></ion-icon>
+  `;
+  favoriteSites.forEach((item, index) => {
+    if (item.id == favSiteElementForDelete.dataset.favsite) {
+      favoriteSites.splice(index, 1);
+      localStorage.removeItem('addedFavoriteSites');
+      localStorage.setItem('addedFavoriteSites', JSON.stringify(favoriteSites));
+    }
+  });
+  favSiteElementForDelete.closest(".f-site-colum").removeEventListener("mouseenter", showFavSetting);
+  favSiteElementForDelete.closest(".f-site-colum").removeEventListener("mouseleave", hideFavSetting);
+  deleteFavSiteModal.style.display = "none";
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    applyDeleteFavSite();
+  }
+});

@@ -15,6 +15,7 @@
   --border-color-3: #13334c;
   --border-color-4: #f1f6f9;
   --hover-color-1: #b9b9b9;
+  --hover-color-2: #eeeeee;
   --hover-button-color: #07a4b5;
   --text-hover-1: #fff;
   --text-hover-2: #1d242b;
@@ -30,6 +31,7 @@
   --apply-color-hover-1: #c3edc0;
   --cancell-color-1: #ff2442;
   --cancell-color-hover-1: #ff8787;
+  --background-color-low-opaciry: rgba(0, 0, 0, 0.5);
 
   /* Typography */
   --font-family: Peyda;
@@ -93,14 +95,17 @@ button {
 }
 
 body {
+  background-color: var(--secondary-color);
+  font-family: var(--font-family);
+  position: relative;
+}
+.body-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary-color);
   flex-direction: column;
   gap: 20px;
-  font-family: var(--font-family);
 }
 
 /*-----------------------------------*\
@@ -426,6 +431,7 @@ main .search-bar button:hover {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  color: var(--text-color-2);
 }
 .time-header button:hover {
   background-color: var(--hover-button-color);
@@ -575,9 +581,24 @@ main .search-bar button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text-color-2);
+}
+.weather .settings-and-title button:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-hover-1);
 }
 .weather .settings-and-title .location-title {
   font-size: 10px;
+}
+.weather-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  padding-block-start: 5px;
 }
 .weather .show-weather {
   display: flex;
@@ -590,8 +611,8 @@ main .search-bar button:hover {
   gap: 10px;
 }
 .weather .show-weather .temperature-display .temperature {
-  font-size: 35px;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight: 900;
   padding-top: 10px;
 }
 .weather .show-weather .temperature-display ion-icon {
@@ -605,7 +626,230 @@ main .search-bar button:hover {
 .weather .perfect-weather a {
   display: flex;
   gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+.weather .perfect-weather a:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-hover-1);
 }
 .weather .perfect-weather span {
   font-size: 10px;
+}
+
+.favorite-sites {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.favorite-sites .f-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorite-sites .f-site,
+.favorite-sites .f-site-colum {
+  height: 80px;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+}
+.favorite-sites .f-site-colum {
+  position: relative;
+  width: 30%;
+}
+.favorite-sites .f-site {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+}
+.favorite-sites .f-site:hover {
+  cursor: pointer;
+  background-color: var(--hover-color-2);
+}
+.favorite-sites .f-site > ion-icon {
+  font-size: 30px;
+  color: var(--secondary-color);
+}
+.f-site-added {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.f-site-added span {
+  font-size: 10px;
+}
+.favsite-edite,
+.favsite-trash {
+  width: 20px;
+  height: 20px;
+  display: inline;
+  position: absolute;
+  z-index: 4;
+  top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  color: var(--text-color-2);
+  visibility: hidden;
+  pointer-events: auto;
+}
+.favsite-edite ion-icon,
+.favsite-trash ion-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.favsite-edite {
+  right: 10px;
+}
+.favsite-trash {
+  left: 10px;
+}
+.favsite-edite:hover {
+  color: var(--text-hover-1);
+  background-color: var(--hover-button-color);
+}
+.favsite-trash {
+  left: 10px;
+}
+.favsite-trash:hover {
+  color: var(--text-hover-1);
+  background-color: var(--hover-button-color);
+}
+.add-fav-site-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background-color-low-opaciry);
+  z-index: 10;
+  display: none;
+}
+.add-fav-site-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-fav-site-form-input {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  gap: 20px;
+}
+.add-fav-site-form-input > button {
+  width: 20px;
+  height: 20px;
+  align-self: flex-start;
+}
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.url-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.title-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.add-fav-site-form-input input {
+  outline: 1px solid var(--border-color-1);
+  padding: 10px;
+  border-radius: 10px;
+}
+.title-submit input,
+.title-submit > button {
+  width: 48%;
+}
+.title-submit > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--button-color);
+  padding: 11px;
+  border-radius: 10px;
+  color: var(--text-color-1);
+}
+.delete-fav-site-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  display: none;
+}
+.delete-modal-centerd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+}
+.delete-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-color-1);
+  border-radius: 20px;
+  gap: 20px;
+}
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+.buttons-container button {
+  width: 49%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--text-color-1);
+}
+.delete-fav-btn {
+  background-color: var(--cancell-color-1);
+}
+.delete-fav-btn:hover {
+  background-color: var(--cancell-color-hover-1);
+}
+.cancell-fav-btn {
+  background-color: var(--button-color);
+}
+.cancell-fav-btn:hover {
+  background-color: var(--hover-button-color);
 }
