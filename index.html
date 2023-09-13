@@ -226,6 +226,7 @@
             </div>
           </div>
         </div>
+        <!--------------------- Favorite Sites --------------------->
         <div class="favorite-sites">
           <div class="f-row">
             <div class="f-site-colum">
@@ -412,8 +413,174 @@
             </div>
           </div>
         </div>
+        <div class="todo-and-calender">
+          <!--------------------- solar calendar --------------------->
+          <div class="solar-calendar">
+            <div class="Header-calendar">
+              <button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+              </button>
+              <button>
+                شهریور
+                <ion-icon name="caret-down-outline"></ion-icon>
+              </button>
+              <button>
+                1401
+                <ion-icon name="caret-down-outline"></ion-icon>
+              </button>
+              <button>
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </button>
+            </div>
+            <ul class="days-week">
+              <li>ش</li>
+              <li>ی</li>
+              <li>د</li>
+              <li>س</li>
+              <li>چ</li>
+              <li>پ</li>
+              <li>ج</li>
+            </ul>
+            <ul class="days-number">
+              <li class="day shanbeh">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </li>
+              <li class="day yek-shanbeh">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </li>
+              <li class="day do-shanbeh">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </li>
+              <li class="day se-shanbeh">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </li>
+              <li class="day chahar-shanbeh">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </li>
+              <li class="day panj-shanbeh">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </li>
+              <li class="day jomeh">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </li>
+            </ul>
+          </div>
+          <!--------------------- ToDo List --------------------->
+          <div class="todo-list">
+            <div class="todo-cantainer">
+              <div class="todo-header">
+                <h3 class="todo-list-title">دست نویس</h3>
+                <button class="visibility" data-visible-todo>
+                  مخفی کن
+                  <ion-icon name="eye-off-outline"></ion-icon>
+                </button>
+              </div>
+              <div class="todos-sartable-list"></div>
+              <div class="todo-list-inputs">
+                <div class="add-todos-inputs">
+                  <input
+                    type="text"
+                    name="add-todo-title"
+                    placeholder="عنوان کار جدید"
+                    data-add-todo-title
+                  />
+                  <div class="line"></div>
+                  <div class="add-todo-tag">
+                    <ion-icon name="pricetag-outline"></ion-icon>
+                    <input
+                      type="text"
+                      name="add-todo-tag"
+                      placeholder="برچسب کار"
+                      data-add-todo-tag
+                    />
+                    <div class="todo-tag-color">
+                      <input
+                        type="checkbox"
+                        class="tag-red"
+                        id="tag-red"
+                        data-tagcolor="red"
+                      />
+                      <input
+                        type="checkbox"
+                        class="tag-yellow"
+                        id="tag-yellow"
+                        data-tagcolor="yellow"
+                      />
+                      <input
+                        type="checkbox"
+                        class="tag-green"
+                        id="tag-green"
+                        data-tagcolor="green"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <button class="submit-todo">
+                  <ion-icon name="add-outline"></ion-icon>
+                </button>
+                <div class="submit-edite">
+                  <button class="apply-edit-todo" data-apply-edit-todo>
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                  </button>
+                  <button class="cancell-edit-todo" data-cancell-edit-todo>
+                    <ion-icon name="close-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="blur-todo-list-modal">
+              <button class="visibility" data-hidden-todo>
+                نمایش بده
+                <ion-icon name="eye-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
+    <!--------------------- Modals Full Body --------------------->
     <div class="add-fav-site-modal">
       <div class="add-fav-site-form">
         <div class="add-fav-site-form-input">
@@ -488,6 +655,7 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+
     <script type="module" src="./js/script.js"></script>
   </body>
 </html>

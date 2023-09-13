@@ -1,19 +1,47 @@
 //To enter frequently used functions
 
 import * as functions from "./functions.js";
+// const main = document.querySelector("main");
+// window.addEventListener("DOMContentLoaded", function () {
+//   if (window.innerWidth > 1024) {
+//     main.innerHTML = "";
+//   }
+// });
+// window.addEventListener("resize", function () {
+//   if (window.innerWidth > 1024) {
+//     main.innerHTML = "";
+//   }
+// });
 //To Save Settings
-let [saveMode, saveFonts, saveBackgroundColor] = [null];
+let [saveMode, saveFonts, saveNameFonts, saveBackgroundColor] = [null];
 function saveSettings() {
   let settingData = {
     mode: saveMode,
     fonts: saveFonts,
+    fontName: saveNameFonts,
     backgroundColor: saveBackgroundColor,
   };
   let jsonData = JSON.stringify(settingData);
   localStorage.setItem("settingData", jsonData);
 }
+const savedSetting = JSON.parse(localStorage.getItem("settingData"));
+if (savedSetting) {
+  [saveMode, saveFonts, saveNameFonts, saveBackgroundColor] = [savedSetting.mode, savedSetting.fonts, savedSetting.fontName, savedSetting.backgroundColor];
+}
+if (saveBackgroundColor) {
+  if (saveBackgroundColor.startsWith("https")) {
+    document.body.style.background = "url(" + saveBackgroundColor + ")"
+  }
+  else {
+    document.body.style.backgroundColor = saveBackgroundColor;
 
-//To show Settings
+  }
+}
+
+
+/////////////////////////////////
+///////// Show Settings ////////
+///////////////////////////////
 const settings = document.querySelector(".settings ion-icon");
 const settingsContainer = document.querySelector(".settings-container");
 
@@ -33,69 +61,98 @@ document.addEventListener("click", function (event) {
   }
 });
 
-//To change mode / dark or bright
-const modeChekbox = document.querySelector("[data-mode-checkbox]");
-functions.addEventOnElem(modeChekbox, "change", toChangeMode);
+///////////////////////////////////////////////
+///////// Change Mode / Dark Or Light ////////
+/////////////////////////////////////////////
 
+const modeChekbox = document.querySelector("[data-mode-checkbox]");
+if (saveMode == true) {
+  darkColors();
+  modeChekbox.checked = true;
+}
+else {
+  lightColors();
+  modeChekbox.checked = false;
+}
+functions.addEventOnElem(modeChekbox, "change", toChangeMode);
+function darkColors() {
+  //Dark mode colors
+  document.documentElement.style.setProperty("--primary-color", "#181823");
+  // document.documentElement.style.setProperty('--secondary-color', '#NewValue2');
+  document.documentElement.style.setProperty("--input-color", "#B9D4F1");
+  document.documentElement.style.setProperty("--button-color", "#537FE7");
+  document.documentElement.style.setProperty(
+    "--hover-button-color",
+    "#7AA5D2"
+  );
+  document.documentElement.style.setProperty("--border-color-1", "#537FE7");
+  document.documentElement.style.setProperty("--border-color-2", "#537FE7");
+  document.documentElement.style.setProperty("--border-color-3", "#E9F8F9");
+  document.documentElement.style.setProperty("--hover-color-1", "#7AA5D2");
+  document.documentElement.style.setProperty("--text-hover-1", "#fff");
+  document.documentElement.style.setProperty("--text-hover-2", "#000");
+  document.documentElement.style.setProperty("--text-hover-3", "#000");
+  document.documentElement.style.setProperty("--selected-color", "#537FE7");
+  document.documentElement.style.setProperty("--text-color-1", "#E9F8F9");
+  document.documentElement.style.setProperty("--text-color-2", "#fff");
+  document.documentElement.style.setProperty("--text-color-3", "#000");
+  document.documentElement.style.setProperty("--icon-color-1", "#E9F8F9");
+  document.documentElement.style.setProperty("--icon-color-2", "#E9F8F9");
+}
+function lightColors() {
+  //Bright colors
+  document.documentElement.style.setProperty("--primary-color", "#F1F6F9");
+  document.documentElement.style.setProperty("--secondary-color", "#AFD3E2");
+  document.documentElement.style.setProperty("--input-color", "#dfe4e9");
+  document.documentElement.style.setProperty("--button-color", "#366ED8");
+  document.documentElement.style.setProperty("--border-color-1", "#0D1282");
+  document.documentElement.style.setProperty("--border-color-2", "#13334C");
+  document.documentElement.style.setProperty("--border-color-3", "#13334C");
+  document.documentElement.style.setProperty("--hover-color-1", "#b9b9b9");
+  document.documentElement.style.setProperty(
+    "--hover-button-color",
+    "#07A4B5"
+  );
+  document.documentElement.style.setProperty("--text-hover-1", "#fff");
+  document.documentElement.style.setProperty("--text-hover-2", "#1D242B");
+  document.documentElement.style.setProperty("--text-hover-3", "#1D242B");
+  document.documentElement.style.setProperty("--selected-color", "#19376D");
+  document.documentElement.style.setProperty("--text-color-1", "#fff");
+  document.documentElement.style.setProperty("--text-color-2", "#1D242B");
+  document.documentElement.style.setProperty("--text-color-3", "#1D242B");
+  document.documentElement.style.setProperty("--icon-color-1", "#393E46");
+  document.documentElement.style.setProperty("--icon-color-2", "#0D1282");
+  document.documentElement.style.setProperty("--icon-color-3", "#F1F6F9");
+
+}
 function toChangeMode() {
   if (this.checked) {
     saveMode = true;
-    //Dark mode colors
-    document.documentElement.style.setProperty("--primary-color", "#181823");
-    // document.documentElement.style.setProperty('--secondary-color', '#NewValue2');
-    document.documentElement.style.setProperty("--input-color", "#B9D4F1");
-    document.documentElement.style.setProperty("--button-color", "#537FE7");
-    document.documentElement.style.setProperty(
-      "--hover-button-color",
-      "#7AA5D2"
-    );
-    document.documentElement.style.setProperty("--border-color-1", "#537FE7");
-    document.documentElement.style.setProperty("--border-color-2", "#537FE7");
-    document.documentElement.style.setProperty("--border-color-3", "#E9F8F9");
-    document.documentElement.style.setProperty("--hover-color-1", "#7AA5D2");
-    document.documentElement.style.setProperty("--text-hover-1", "#fff");
-    document.documentElement.style.setProperty("--text-hover-2", "#000");
-    document.documentElement.style.setProperty("--text-hover-3", "#000");
-    document.documentElement.style.setProperty("--selected-color", "#537FE7");
-    document.documentElement.style.setProperty("--text-color-1", "#E9F8F9");
-    document.documentElement.style.setProperty("--text-color-2", "#fff");
-    document.documentElement.style.setProperty("--text-color-3", "#000");
-    document.documentElement.style.setProperty("--icon-color-1", "#E9F8F9");
-    document.documentElement.style.setProperty("--icon-color-2", "#E9F8F9");
+    saveSettings()
+    darkColors()
+
   } else {
     saveMode = false;
-    //Bright colors
-    document.documentElement.style.setProperty("--primary-color", "#F1F6F9");
-    document.documentElement.style.setProperty("--secondary-color", "#AFD3E2");
-    document.documentElement.style.setProperty("--input-color", "#dfe4e9");
-    document.documentElement.style.setProperty("--button-color", "#366ED8");
-    document.documentElement.style.setProperty("--border-color-1", "#0D1282");
-    document.documentElement.style.setProperty("--border-color-2", "#13334C");
-    document.documentElement.style.setProperty("--border-color-3", "#13334C");
-    document.documentElement.style.setProperty("--hover-color-1", "#b9b9b9");
-    document.documentElement.style.setProperty(
-      "--hover-button-color",
-      "#07A4B5"
-    );
-    document.documentElement.style.setProperty("--text-hover-1", "#fff");
-    document.documentElement.style.setProperty("--text-hover-2", "#1D242B");
-    document.documentElement.style.setProperty("--text-hover-3", "#1D242B");
-    document.documentElement.style.setProperty("--selected-color", "#19376D");
-    document.documentElement.style.setProperty("--text-color-1", "#fff");
-    document.documentElement.style.setProperty("--text-color-2", "#1D242B");
-    document.documentElement.style.setProperty("--text-color-3", "#1D242B");
-    document.documentElement.style.setProperty("--icon-color-1", "#393E46");
-    document.documentElement.style.setProperty("--icon-color-2", "#0D1282");
-    document.documentElement.style.setProperty("--icon-color-3", "#F1F6F9");
+    saveSettings()
+    lightColors()
   }
 }
 
-//To change fonts
+/////////////////////////////////
+///////// Change Fonts /////////
+///////////////////////////////
 const fontSelect = document.querySelector(".change-fonts .select");
 const fontList = document.querySelector(".change-fonts .font-list");
 const fontOptions = document.querySelectorAll(".font-list li");
 const fontSelected = document.querySelector(".change-fonts .selected");
 
+if (saveFonts) {
+  document.documentElement.style.setProperty(
+    "--font-family",
+    saveFonts
+  );
+  fontSelected.innerText = saveNameFonts;
+}
 functions.addEventOnElem(fontSelect, "click", toggleFontDropdown);
 
 function toggleFontDropdown() {
@@ -118,9 +175,14 @@ function toggleFontOptions() {
     this.dataset.font
   );
   saveFonts = this.dataset.font;
+  saveNameFonts = this.innerText;
+  saveSettings();
 }
 
-//Change Backgrond
+/////////////////////////////////////
+///////// Change Background ////////
+///////////////////////////////////
+
 const colorBtns = document.querySelectorAll(
   ".change-background .colors button"
 );
@@ -139,6 +201,7 @@ function toChangeBgColor() {
   body.style.backgroundImage = "none";
   body.style.backgroundColor = this.dataset.color;
   saveBackgroundColor = this.dataset.color;
+  saveSettings();
 }
 
 function loadImage(url, imageButton) {
@@ -168,16 +231,37 @@ function checkOnlineStatus() {
     netNoticeSpan.style.display = "block";
   }
 }
+function imageFit() {
+  const body = document.querySelector('body');
+  const image = new Image();
+  image.src = body.style.backgroundImage.slice(5, -2);
 
+  image.onload = function () {
+    const aspectRatio = image.width / image.height;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    if (windowWidth / windowHeight > aspectRatio) {
+      body.style.backgroundSize = 'auto 100%';
+    } else {
+      body.style.backgroundSize = '100% auto';
+    }
+  }
+}
 function toChangeBgImage() {
   document.body.style.background = "url(" + this.dataset.img + ")";
   saveBackgroundColor = this.dataset.img;
+  imageFit()
+  saveSettings();
 }
-
+window.addEventListener('load', imageFit);
 window.addEventListener("online", checkOnlineStatus);
 window.addEventListener("offline", checkOnlineStatus);
 
-//Search Bar
+//////////////////////////////
+///////// Search Bar ////////
+////////////////////////////
+
 const searchBtn = document.querySelector(".search-btn");
 const searchInput = document.querySelector("[data-search-input]");
 
@@ -199,7 +283,9 @@ function searchGoogle(e) {
   searchInput.value = "";
 }
 
-//To time area
+/////////////////////////////////
+///////// Times ////////
+///////////////////////////////
 const changeTimeZone = document.querySelector(".change-time-zone");
 const changeTimeZoneBtn = document.querySelector(".time-header button");
 const allTimeZoneList = document.querySelector(".change-time-zone .zone-list");
@@ -366,7 +452,10 @@ document.addEventListener("click", function (event) {
   }
 });
 
-//weather
+///////////////////////////
+///////// Weather ////////
+/////////////////////////
+
 const displayWeather = document.querySelector(".temperature-display .temperature");
 const displayWeatherIcon = document.querySelector(".temperature-display ion-icon");
 const weatherDescription = document.querySelector(".weather .description");
@@ -576,8 +665,12 @@ if (weatherZoneValue) {
 else {
   getWeatherByRegion(defaultRegion);
 }
-////////////////////////////////////////////////////////////////////////////////
-//Favorite sites
+
+
+/////////////////////////////////
+///////// Favorite Site ////////
+///////////////////////////////
+
 const addFavoriteSiteModal = document.querySelector(".add-fav-site-modal");
 const closeAddFavBtn = document.querySelector("[data-close-fav-inputs]");
 const addFavUrlInput = document.querySelector("[data-fav-url-input]");
@@ -586,6 +679,7 @@ const submitFavSiteBtn = document.querySelector("[data-submit-fav-input]");
 const addFavoriteSiteModalTitle = document.querySelector(".add-fav-site-form-input h3");
 
 let favoriteSites = [];
+
 const allfavoritSites = document.querySelectorAll(".favorite-sites .f-site");
 const storedFavoriteSites = localStorage.getItem("addedFavoriteSites");
 if (storedFavoriteSites) {
@@ -629,7 +723,16 @@ function checkFavoriteSiteDiv() {
     const hasAddFavsiteIcon = e.target.closest(".f-site").querySelector(".add-favsite-icon");
     if (hasAddFavsiteIcon) {
       addFavoriteSiteModal.style.display = "block";
-      submitFavSiteBtn.innerText = "افزودن";
+      submitFavSiteBtn.innerHTML = `
+      افزودن
+
+      <img
+        width="32"
+        height="32"
+        src="https://img.icons8.com/windows/32/ffffff/enter-key.png"
+        alt="enter-key"
+      />
+      `;
       addFavoriteSiteModalTitle.innerText = "افزودن سایت مورد علاقه";
       favSiteElement = e.target.closest(".f-site");
     }
@@ -747,7 +850,14 @@ function showFavSetting(e) {
       favSiteElementForEdite = favSiteElem;
       favSiteElement = favSiteElem;
       editTitleModal.innerText = "ویرایش سایت مورد علاقه";
-      editModalBtnText.innerText = "ویرایش";
+      editModalBtnText.innerHTML = `
+      ویرایش
+      <img
+        width="32"
+        height="32"
+        src="https://img.icons8.com/windows/32/ffffff/enter-key.png"
+        alt="enter-key"
+      />`;
       const editUrl = favSiteElementForEdite.querySelector(".f-site-added");
       let hrefValue = editUrl.getAttribute("href");
       hrefValue = hrefValue.replace("http://", "").replace("https://", "");
@@ -802,6 +912,436 @@ function applyDeleteFavSite() {
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    applyDeleteFavSite();
+    const deleteFavSiteModal = document.querySelector(".delete-fav-site-modal");
+    if (deleteFavSiteModal.style.display === "block") {
+      applyDeleteFavSite();
+    }
   }
 });
+
+
+
+
+
+/////////////////////////////
+///////// ToDo List ////////
+///////////////////////////
+
+const todolistContainer = document.querySelector(".todo-cantainer");
+const visibleTodoBtn = document.querySelector("[data-visible-todo]");
+const hiddenTodoBtn = document.querySelector("[data-hidden-todo]");
+const todolistHiddenModal = document.querySelector(".blur-todo-list-modal")
+functions.addEventOnElem(visibleTodoBtn, "click", toBlurTodoList);
+function toBlurTodoList() {
+  todolistContainer.style.filter = "blur(5px)";
+  hiddenTodoBtn.style.visibility = "visible";
+  todolistHiddenModal.style.visibility = "visible"
+}
+functions.addEventOnElem(hiddenTodoBtn, "click", toUnBlurTodoList);
+function toUnBlurTodoList() {
+  todolistContainer.style.filter = "";
+  todolistHiddenModal.style.visibility = "hidden";
+  hiddenTodoBtn.style.visibility = "hidden";
+}
+const SartableList = document.querySelector(".todos-sartable-list");
+const todoListInputs = document.querySelector(".todo-list-inputs");
+const todoTitleInputs = todoListInputs.querySelector("[data-add-todo-title]");
+const todoTagInputs = todoListInputs.querySelector("[data-add-todo-tag]");
+const allTagColorCheckBox = todoListInputs.querySelectorAll(".add-todo-tag input")
+const todoRedTagCheckBox = todoListInputs.querySelector("#tag-red");
+const todoYellowTagCheckBox = todoListInputs.querySelector("#tag-yellow");
+const todoGreenTagCheckBox = todoListInputs.querySelector("#tag-green");
+const todoSubmitBtn = todoListInputs.querySelector(".submit-todo");
+
+let saveTodoList = [];
+let rowNumber = 0;
+
+reloadSavedTodoList()
+function reloadSavedTodoList() {
+  let savedTodoList = localStorage.getItem("addedTodo");
+  if (savedTodoList) {
+    saveTodoList = JSON.parse(savedTodoList);
+    SartableList.innerHTML = "";
+    saveTodoList.forEach(item => {
+      if (item.rowNumber > rowNumber) {
+        rowNumber = item.rowNumber;
+      }
+    });
+
+    saveTodoList.forEach(savedTodo => {
+      SartableList.innerHTML += `
+      <div class="todo-sartable"
+      data-todoid="${savedTodo.id}"
+      data-row="${savedTodo.rowNumber}">
+      <div
+        class="todo ${savedTodo.todoColor}" ${savedTodo.checkbox ? `style="text-decoration: line-through"` : ""}
+      >
+        <div class="todo-right">
+        <ion-icon name="reorder-three-outline"></ion-icon>
+        ${savedTodo.checkbox ? `
+            <input
+              type="checkbox"
+              name="todo-check"
+              id="todo-check-box"
+              checked
+            />
+          ` : `
+            <input
+              type="checkbox"
+              name="todo-check"
+              id="todo-check-box"
+            />
+          `
+        }
+        <div class="title-and-tag">
+          <h3 class="todo-title">${savedTodo.todoTitle}</h3>
+          <span class="todo-tag">${savedTodo.todoTag}</span>
+        </div>
+      </div>
+      <div class="todo-left">
+        <button data-edit-todo>
+          <ion-icon name="create-outline"></ion-icon>
+        </button>
+        <button data-delete-todo>
+          <ion-icon name="trash-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="delete-todo">
+      <button class="todo-delete" data-accept-delete-todo>
+        حذف
+        <img
+          width="32"
+          height="32"
+          src="https://img.icons8.com/windows/32/ffffff/enter-key.png"
+          alt="enter-key"
+        />
+      </button>
+      <button class="todo-undelete" data-cancell-delete-todo>
+        لغو
+        <img
+          width="32"
+          height="32"
+          src="https://img.icons8.com/windows/32/000000/esc.png"
+          alt="esc"
+        />
+      </button>
+    </div>
+  </div>`;
+      let todos = SartableList.querySelectorAll(".todo");
+      todos.forEach(item => {
+        item.addEventListener("mouseenter", showTodoSetting);
+        item.addEventListener("mouseleave", hideTodoSetting);
+        item.querySelector("input").addEventListener("click", checkTodo);
+        item.querySelector("[data-delete-todo]").addEventListener("click", showDeleteTodo);
+        item.querySelector("[data-edit-todo]").addEventListener("click", showEditTodo);
+      })
+    })
+  }
+}
+
+functions.addEventOnElem(todoRedTagCheckBox, "click", checkedTag);
+functions.addEventOnElem(todoYellowTagCheckBox, "click", checkedTag);
+functions.addEventOnElem(todoGreenTagCheckBox, "click", checkedTag);
+
+let selectedTagColor;
+let selectedCheckBox;
+
+function checkedTag() {
+  selectedCheckBox = this;
+  selectedTagColor = selectedCheckBox.dataset.tagcolor;
+  allTagColorCheckBox.forEach(function (checkbox) {
+    if (checkbox !== selectedCheckBox) {
+      checkbox.checked = false;
+    }
+  });
+  if (classList) {
+    classList.remove(classList.item(1));
+    classList.add(selectedTagColor);
+  }
+}
+functions.addEventOnElem(todoSubmitBtn, "click", submitNewTodo);
+todoTitleInputs.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    if (editTodoBtns.style.display !== "flex") {
+      submitNewTodo();
+    }
+    else {
+      submitEditTodo()
+    }
+  }
+});
+todoTagInputs.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    if (editTodoBtns.style.display !== "flex") {
+      submitNewTodo();
+    }
+    else {
+      submitEditTodo()
+    }
+  }
+});
+function submitNewTodo() {
+  if (todoTitleInputs.value == "") {
+    alert("برای افزودن کار جدید حتما باید عنوانی وارد کنید");
+  }
+  else {
+    let todoTitle = todoTitleInputs.value;
+    let todoTag = todoTagInputs.value;
+    rowNumber += 1;
+    const currentTime = new Date().getTime();
+    let tagColor = "";
+    if (selectedTagColor) {
+      tagColor = selectedTagColor;
+    }
+    let checkBox = false;
+    let todoListData = {
+      id: currentTime,
+      rowNumber: rowNumber,
+      todoTitle: todoTitle,
+      todoTag: todoTag,
+      checkbox: checkBox,
+      todoColor: selectedTagColor
+    }
+    saveTodoList.unshift(todoListData);
+    localStorage.setItem("addedTodo", JSON.stringify(saveTodoList));
+    reloadSavedTodoList()
+    todoTitleInputs.value = "";
+    todoTagInputs.value = "";
+    if (selectedCheckBox) {
+      selectedCheckBox.checked = false;
+      selectedTagColor = "";
+    }
+  }
+}
+function showTodoSetting(e) {
+  const button = e.target.querySelectorAll("button");
+  button.forEach(elem => {
+    elem.style.visibility = "visible"
+  });
+}
+function hideTodoSetting(e) {
+  const button = e.target.querySelectorAll("button");
+  button.forEach(elem => {
+    elem.style.visibility = "hidden"
+  });
+}
+function checkTodo(e) {
+  const checkbox = e.target;
+  const thisInput = checkbox.closest(".todo");
+  todoElem = checkbox.closest(".todo-sartable");
+  let currentTime = todoElem.dataset.todoid;
+  let rowNumber = parseInt(todoElem.dataset.row);
+  let todoTitle = todoElem.querySelector(".todo-title").innerText;
+  let todoTag = todoElem.querySelector(".todo-tag").innerText;
+  let classList = thisInput.classList;
+  let selectedTagColor = classList.item(1);
+
+  if (checkbox.checked) {
+    thisInput.style.textDecoration = "line-through";
+    saveTodoList.forEach((item, index) => {
+      if (item.id == todoElem.dataset.todoid) {
+        saveTodoList.splice(index, 1);
+        localStorage.removeItem('addedTodo');
+        localStorage.setItem('addedTodo', JSON.stringify(saveTodoList));
+      }
+    });
+    let todoListData = {
+      id: currentTime,
+      rowNumber: rowNumber - 100,
+      todoTitle: todoTitle,
+      todoTag: todoTag,
+      checkbox: true,
+      todoColor: selectedTagColor,
+    }
+    saveTodoList.push(todoListData);
+    localStorage.setItem("addedTodo", JSON.stringify(saveTodoList));
+    reloadSavedTodoList();
+  } else {
+    saveTodoList.forEach((item, index) => {
+      if (item.id == todoElem.dataset.todoid) {
+        saveTodoList.splice(index, 1);
+        localStorage.removeItem('addedTodo');
+        localStorage.setItem('addedTodo', JSON.stringify(saveTodoList));
+      }
+    });
+    let todoListData = {
+      id: currentTime,
+      rowNumber: rowNumber + 100,
+      todoTitle: todoTitle,
+      todoTag: todoTag,
+      checkbox: false,
+      todoColor: selectedTagColor,
+    }
+    saveTodoList.push(todoListData);
+    saveTodoList.sort((a, b) => b.rowNumber - a.rowNumber);
+    localStorage.setItem("addedTodo", JSON.stringify(saveTodoList));
+
+    reloadSavedTodoList();
+  }
+}
+let deleteElm;
+let todoElem;
+function showDeleteTodo(e) {
+  const allDeleteTodoContiner = document.querySelectorAll(".delete-todo")
+  allDeleteTodoContiner.forEach(elm => {
+    elm.style.display = "none"
+  })
+  const deleteBtn = e.target;
+  todoElem = deleteBtn.closest(".todo-sartable");
+  deleteElm = todoElem.querySelector(".delete-todo");
+  const thisDeleteBtn = todoElem.querySelector("[data-accept-delete-todo]");
+  const thisCancellBtn = todoElem.querySelector("[data-cancell-delete-todo]");
+  functions.addEventOnElem(thisDeleteBtn, "click", deleteThisTodo);
+  functions.addEventOnElem(thisCancellBtn, "click", cancellDeleteThisTodo);
+  deleteElm.style.display = "flex";
+  todoSubmitBtn.style.display = "block";
+  editTodoBtns.style.display = "none";
+}
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    const allDeleteTodoContiner = document.querySelectorAll(".delete-todo")
+    allDeleteTodoContiner.forEach(elm => {
+      if (elm.style.display === "flex") {
+        deleteThisTodo()
+      }
+    })
+  }
+  if (event.key === "Escape") {
+    const allDeleteTodoContiner = document.querySelectorAll(".delete-todo")
+    allDeleteTodoContiner.forEach(elm => {
+      if (elm.style.display === "flex") {
+        cancellDeleteThisTodo()
+      }
+    })
+  }
+});
+
+function deleteThisTodo() {
+  saveTodoList.forEach((item, index) => {
+    if (item.id == todoElem.dataset.todoid) {
+      saveTodoList.splice(index, 1);
+      localStorage.removeItem('addedTodo');
+      localStorage.setItem('addedTodo', JSON.stringify(saveTodoList));
+      todoElem.remove();
+      if (saveTodoList.length == 0) {
+        rowNumber = 0;
+      }
+    }
+  });
+}
+function cancellDeleteThisTodo() {
+  deleteElm.style.display = "none"
+}
+let todoTitleEdit;
+let todoTagEdit;
+let classList;
+let todoElemId;
+const editTodoBtns = document.querySelector(".submit-edite");
+const cancellTodoEditBtn = document.querySelector("[data-cancell-edit-todo]");
+const applyTodoEditBtn = document.querySelector("[data-apply-edit-todo]");
+
+function showEditTodo(e) {
+  const editBtn = e.target;
+  todoElem = editBtn.closest(".todo-sartable");
+  todoElemId = todoElem.dataset.todoid;
+  const thisInput = editBtn.closest(".todo");
+  todoTitleEdit = todoElem.querySelector(".todo-title");
+  todoTagEdit = todoElem.querySelector(".todo-tag");
+  classList = thisInput.classList;
+  saveTodoList.forEach(item => {
+    if (item.id == todoElem.dataset.todoid) {
+      todoTitleInputs.value = item.todoTitle;
+      todoTagInputs.value = item.todoTag;
+      switch (item.todoColor) {
+        case "red":
+          todoRedTagCheckBox.checked = true;
+          todoYellowTagCheckBox.checked = false;
+          todoGreenTagCheckBox.checked = false;
+          break;
+        case "yellow":
+          todoYellowTagCheckBox.checked = true;
+          todoRedTagCheckBox.checked = false;
+          todoGreenTagCheckBox.checked = false;
+          break;
+        case "green":
+          todoGreenTagCheckBox.checked = true;
+          todoYellowTagCheckBox.checked = false;
+          todoRedTagCheckBox.checked = false;
+          break;
+
+        default:
+          todoGreenTagCheckBox.checked = false;
+          todoYellowTagCheckBox.checked = false;
+          todoRedTagCheckBox.checked = false;
+          break;
+      }
+    }
+    functions.addEventOnElem(todoTitleInputs, "input", EditeTodoTitleInputs);
+    functions.addEventOnElem(todoTagInputs, "input", EditeTodoTagInputs);
+  });
+  todoSubmitBtn.style.display = "none";
+  editTodoBtns.style.display = "flex";
+
+  const allDeleteTodoContiner = document.querySelectorAll(".delete-todo")
+  allDeleteTodoContiner.forEach(elm => {
+    elm.style.display = "none"
+  })
+}
+function EditeTodoTitleInputs(e) {
+  const inputValue = e.target.value;
+  todoTitleEdit.innerText = inputValue
+}
+function EditeTodoTagInputs(e) {
+  const inputValue = e.target.value;
+  todoTagEdit.innerText = inputValue
+}
+
+functions.addEventOnElem(cancellTodoEditBtn, "click", cancellEditTodo);
+function cancellEditTodo() {
+  todoSubmitBtn.style.display = "block";
+  editTodoBtns.style.display = "none";
+  todoTitleInputs.value = "";
+  todoTagInputs.value = "";
+  if (selectedCheckBox) {
+    selectedCheckBox.checked = false;
+    selectedTagColor = "";
+  }
+  todoTitleInputs.removeEventListener('input', EditeTodoTitleInputs);
+  todoGreenTagCheckBox.checked = false;
+  todoYellowTagCheckBox.checked = false;
+  todoRedTagCheckBox.checked = false;
+  reloadSavedTodoList();
+}
+
+functions.addEventOnElem(applyTodoEditBtn, "click", submitEditTodo);
+function submitEditTodo() {
+  saveTodoList.forEach(item => {
+    if (item.id == todoElemId) {
+      item.todoTitle = todoTitleEdit.innerText;
+      item.todoTag = todoTagEdit.innerText;
+      item.todoColor = selectedTagColor;
+    }
+  });
+  localStorage.removeItem('addedTodo');
+  localStorage.setItem('addedTodo', JSON.stringify(saveTodoList));
+  reloadSavedTodoList();
+  editTodoBtns.style.display = "none";
+  todoSubmitBtn.style.display = "block";
+  todoTitleInputs.value = "";
+  todoTagInputs.value = "";
+  if (selectedCheckBox) {
+    selectedCheckBox.checked = false;
+    selectedTagColor = "";
+  }
+}
+
+
+
+///////////////////////////////////
+///////// Solar Calendar /////////
+/////////////////////////////////
+
+
+
+
