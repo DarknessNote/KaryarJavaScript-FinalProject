@@ -776,6 +776,12 @@ main .search-bar button:hover {
   flex-direction: column;
   gap: 10px;
 }
+.inputs-container input {
+  color: var(--text-color-2);
+}
+.add-fav-site-form-input ion-icon {
+  color: var(--text-color-2);
+}
 .url-input {
   display: flex;
   flex-direction: column;
@@ -873,18 +879,55 @@ main .search-bar button:hover {
 .solar-calendar {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   background-color: var(--primary-color);
   border-radius: 20px;
   padding: 20px;
   gap: 20px;
+  position: relative;
 }
 .Header-calendar {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
 }
+.Header-calendar button {
+  color: var(--text-color-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Header-calendar .arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.Header-calendar .arrow:hover {
+  background-color: var(--button-color);
+  color: var(--text-color-2);
+}
+.display-month,
+.display-year {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+}
+.display-month:hover,
+.display-year:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-color-1);
+}
+.display-month.active,
+.display-year.active {
+  width: 80px;
+  height: 30px;
+  background-color: var(--hover-button-color);
+  color: var(--text-color-1);
+}
+
 .days-week {
   width: 100%;
   display: flex;
@@ -895,26 +938,120 @@ main .search-bar button:hover {
   width: 30px;
   height: 30px;
   display: flex;
-  border-radius: 15px;
   justify-content: center;
   align-items: center;
+  border-radius: 15px;
+  color: var(--text-color-2);
 }
 .days-number {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
 }
 .days-number i {
   margin-bottom: 10px;
+  cursor: pointer;
 }
-.days-number .jomeh i,
+.days-number i.tatil {
+  color: var(--text-color-1);
+}
+.days-number i.tatil.active {
+  color: var(--text-color-1);
+  color: var(--text-color-2);
+}
+
+.days-number .jomeh.active,
+.tatil.active {
+  background-color: white;
+  color: #ed2b2a;
+  border: 1px solid #ed2b2a;
+}
+.days-number i.active {
+  border: 1px solid var(--border-color-1);
+}
+
+.day {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.go-today {
+  width: 100px;
+  padding: 10px;
+  background-color: var(--button-color);
+  color: var(--text-color-1);
+  border-radius: 10px;
+  display: none;
+}
+.go-today:hover {
+  background-color: var(--hover-button-color);
+}
+
+.show-all-month,
+.show-years {
+  position: absolute;
+  top: 60px;
+  right: auto;
+  width: 90%;
+  height: 200px;
+  padding: 10px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-color-1);
+  border-radius: 15px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+.show-all-month.active,
+.show-years.active {
+  display: flex;
+}
+
+.month,
+.year {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.month button,
+.year button {
+  width: 130px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--border-color-2);
+}
+.month button:hover,
+.year button:hover {
+  background-color: var(--hover-color-1);
+  border: 1px solid var(--border-color-2);
+}
+.show-day-details {
+  position: absolute;
+  background-color: var(--secondary-color);
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color-1);
+  top: 110px;
+  right: 50px;
+  z-index: 5;
+  display: none;
+}
+.show-day-details.active {
+  display: block;
+}
+.show-day-details li {
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.days-number .jomeh,
 .tatil {
   background-color: #ed2b2a;
-  color: white;
-}
-.day {
-  display: flex;
-  flex-direction: column;
+  color: var(--text-color-1);
 }
 .todo-list {
   position: relative;
@@ -1045,6 +1182,9 @@ main .search-bar button:hover {
   border-radius: 5px;
   visibility: hidden;
 }
+.todo .todo-left button ion-icon {
+  color: var(--text-color-2);
+}
 .todo .todo-left button:hover {
   background-color: var(--hover-color-1);
   color: var(--text-hover-1);
@@ -1089,6 +1229,9 @@ main .search-bar button:hover {
 }
 .add-todos-inputs > input {
   padding: 10px;
+}
+.todo-tag {
+  color: var(--text-color-3);
 }
 .add-todo-tag {
   display: flex;

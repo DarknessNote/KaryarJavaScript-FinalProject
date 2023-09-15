@@ -417,18 +417,18 @@
           <!--------------------- solar calendar --------------------->
           <div class="solar-calendar">
             <div class="Header-calendar">
-              <button>
+              <button class="arrow" data-last-month>
                 <ion-icon name="arrow-back-outline"></ion-icon>
               </button>
-              <button>
+              <button class="display-month" data-display-month>
                 شهریور
                 <ion-icon name="caret-down-outline"></ion-icon>
               </button>
-              <button>
+              <button class="display-year" data-display-year>
                 1401
                 <ion-icon name="caret-down-outline"></ion-icon>
               </button>
-              <button>
+              <button class="arrow" data-nex-month>
                 <ion-icon name="arrow-forward-outline"></ion-icon>
               </button>
             </div>
@@ -442,70 +442,64 @@
               <li>ج</li>
             </ul>
             <ul class="days-number">
-              <li class="day shanbeh">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-              </li>
-              <li class="day yek-shanbeh">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-              </li>
-              <li class="day do-shanbeh">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-              </li>
-              <li class="day se-shanbeh">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-              </li>
-              <li class="day chahar-shanbeh">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-              </li>
-              <li class="day panj-shanbeh">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-              </li>
-              <li class="day jomeh">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-              </li>
+              <li class="day first-week"></li>
+              <li class="day second-week"></li>
+              <li class="day third-week"></li>
+              <li class="day forth-week"></li>
+              <li class="day fifth-week"></li>
+              <li class="day sixth-week"></li>
             </ul>
+            <div class="show-day-details">
+              <ul>
+                <li>جشن نوروز</li>
+                <li>روز اول</li>
+              </ul>
+            </div>
+            <button class="go-today">برو به امروز</button>
+            <div class="show-all-month">
+              <div class="month bahar-month">
+                <button data-month="1">فروردین</button>
+                <button data-month="2">اردیبهشت</button>
+                <button data-month="3">خرداد</button>
+              </div>
+              <div class="month tabestan-month">
+                <button data-month="4">تیر</button>
+                <button data-month="5">مرداد</button>
+                <button data-month="6">شهریور</button>
+              </div>
+              <div class="month paeiz-month">
+                <button data-month="7">مهر</button>
+                <button data-month="8">آبان</button>
+                <button data-month="9">آذر</button>
+              </div>
+              <div class="month zemestan-month">
+                <button data-month="10">دی</button>
+                <button data-month="11">بهمن</button>
+                <button data-month="12">اسفند</button>
+              </div>
+            </div>
+            <div class="show-years">
+              <div class="year">
+                <button data-year="1398">۱۳۹۸</button>
+                <button data-year="1399">۱۳۹۹</button>
+                <button data-year="1400">۱۴۰۰</button>
+              </div>
+              <div class="year">
+                <button data-year="1401">۱۴۰۱</button>
+                <button data-year="1402">۱۴۰۲</button>
+                <button data-year="1403">۱۴۰۳</button>
+              </div>
+              <div class="year">
+                <button data-year="1404">۱۴۰۴</button>
+                <button data-year="1405">۱۴۰۵</button>
+                <button data-year="1406">۱۴۰۶</button>
+              </div>
+              <div class="year">
+                <button data-year="1407">۱۴۰۷</button>
+                <button data-year="1408">۱۴۰۸</button>
+                <button data-year="1409">۱۴۰۹</button>
+              </div>
+            </div>
           </div>
           <!--------------------- ToDo List --------------------->
           <div class="todo-list">
@@ -655,7 +649,7 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-
+    <script src="./js/persian-date.min.js"></script>
     <script type="module" src="./js/script.js"></script>
   </body>
 </html>

@@ -1341,7 +1341,376 @@ function submitEditTodo() {
 ///////////////////////////////////
 ///////// Solar Calendar /////////
 /////////////////////////////////
+const dayNumbersDiv = document.querySelector(".days-number");
+const firstWeekLi = dayNumbersDiv.querySelector(".first-week");
+const secondWeekLi = dayNumbersDiv.querySelector(".second-week");
+const thirdWeekLi = dayNumbersDiv.querySelector(".third-week");
+const fourWeekLi = dayNumbersDiv.querySelector(".forth-week");
+const fiveWeekLi = dayNumbersDiv.querySelector(".fifth-week");
+const sixWeekLi = dayNumbersDiv.querySelector(".sixth-week");
+
+const lastMonthBtn = document.querySelector("[data-last-month]");
+const nextMonthBtn = document.querySelector("[data-nex-month]");
+const yearBtn = document.querySelector("[data-display-year]");
+const monthBtn = document.querySelector("[data-display-month]");
+const goTodayBtn = document.querySelector(".go-today");
+
+let monthEvent = [];
+
+function shamsiEvent(year) {
+  return new Promise((resolve, reject) => {
+    fetch(`https://hmarzban.github.io/pipe2time.ir/api/${year}/index.json`)
+      .then(response => response.json())
+      .then(data => {
+        monthEvent.push(data);
+        resolve(data);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+}
 
 
+const currentTime = new Date();
+const currentDate = new persianDate(currentTime);
+let currentYear = (currentDate.year());
+let currentMonth = (currentDate.month());
+const saveCurrentYear = (currentDate.year());
+const saveCurrentMonth = (currentDate.month());
+const currentDay = (currentDate.date());
+let EventList = [];
+let holiday = [];
+function displayCalendar() {
+  monthEvent.length = 0;
+  holiday.length = 0;
+  EventList.length = 0;
+  shamsiEvent(currentYear)
+    .then(() => {
+      EventList.push(monthEvent[0]['1402'][(currentMonth - 1)].events)
+      if (currentYear != saveCurrentYear || currentMonth != saveCurrentMonth) {
+        goTodayBtn.style.display = "block";
+      }
+      else {
+        goTodayBtn.style.display = "none";
+      }
+      let yearStr = currentYear.toLocaleString('fa-IR');
+      let formattedNumber = yearStr.replace(/[٬]/g, '');
+      yearBtn.childNodes[0].textContent = formattedNumber;
+      switch (currentMonth) {
+        case 1:
+          monthBtn.childNodes[0].textContent = "فروردین";
+          break;
+        case 2:
+          monthBtn.childNodes[0].textContent = "اردیبهشت";
+          break;
+        case 3:
+          monthBtn.childNodes[0].textContent = "خرداد";
+          break;
+        case 4:
+          monthBtn.childNodes[0].textContent = "تیر";
+          break;
+        case 5:
+          monthBtn.childNodes[0].textContent = "مرداد";
+          break;
+        case 6:
+          monthBtn.childNodes[0].textContent = "شهریور";
+          break;
+        case 7:
+          monthBtn.childNodes[0].textContent = "مهر";
+          break;
+        case 8:
+          monthBtn.childNodes[0].textContent = "آبان";
+          break;
+        case 9:
+          monthBtn.childNodes[0].textContent = "آذر";
+          break;
+        case 10:
+          monthBtn.childNodes[0].textContent = "دی";
+          break;
+        case 11:
+          monthBtn.childNodes[0].textContent = "بهمن";
+          break;
+        case 12:
+          monthBtn.childNodes[0].textContent = "اسفند";
+          break;
+        default:
+          console.log("مقدار ماه معتبر نیست")
+          break;
+      }
+      firstWeekLi.innerHTML = "";
+      secondWeekLi.innerHTML = "";
+      thirdWeekLi.innerHTML = "";
+      fourWeekLi.innerHTML = "";
+      fiveWeekLi.innerHTML = "";
+      sixWeekLi.innerHTML = "";
+      var date = new persianDate([currentYear, currentMonth, 1]);
+      var dayOfWeek = (date.toDate().getDay() + 1) % 7;
 
+      for (let i = 0; i <= 7; i++) {
+        if (i < dayOfWeek) {
+          firstWeekLi.innerHTML += `<i style="visibility: hidden;"></i>`;
+        }
+        else if (i == dayOfWeek) {
+          let firstWeekI = firstWeekLi.querySelectorAll("i");
+          if (firstWeekI.length == 6) {
+            firstWeekLi.innerHTML += `<i class="jomeh" data-number="1">۱</i>`;
+            const number30 = 30;
+            const number31 = 31;
 
+            const formattedNumber30 = number30.toLocaleString('fa-IR');
+            const formattedNumber31 = number31.toLocaleString('fa-IR');
+            if (currentMonth <= 6) {
+              sixWeekLi.innerHTML += `
+            <i data-number="30">${formattedNumber30}</i>
+            <i data-number="31">${formattedNumber31}</i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            `;
+            }
+            else {
+              sixWeekLi.innerHTML += `
+            <i>${formattedNumber30}</i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            <i style="visibility: hidden;"></i>
+            `;
+            }
+          }
+          else {
+            firstWeekLi.innerHTML += `<i data-number="1">۱</i>`;
+          }
+        }
+        else {
+          for (let j = 2; j <= 30; j++) {
+            const formattedNumber = j.toLocaleString('fa-IR');
+            if (dayOfWeek < 6) {
+              if (dayOfWeek == 5) {
+                firstWeekLi.innerHTML += `<i class="jomeh" data-number=${j}>${formattedNumber}</i>`;
+              }
+              else {
+                firstWeekLi.innerHTML += `<i data-number=${j}>${formattedNumber}</i>`;
+              }
+              dayOfWeek++;
+            }
+            else if (dayOfWeek < 13) {
+              if (dayOfWeek == 12) {
+                secondWeekLi.innerHTML += `<i class="jomeh" data-number=${j}>${formattedNumber}</i>`;
+              }
+              else {
+                secondWeekLi.innerHTML += `<i data-number=${j}>${formattedNumber}</i>`;
+              }
+              dayOfWeek++;
+            }
+            else if (dayOfWeek < 20) {
+              if (dayOfWeek == 19) {
+                thirdWeekLi.innerHTML += `<i class="jomeh" data-number=${j}>${formattedNumber}</i>`;
+              }
+              else {
+                thirdWeekLi.innerHTML += `<i data-number=${j}>${formattedNumber}</i>`;
+              }
+              dayOfWeek++;
+            }
+            else if (dayOfWeek < 27) {
+              if (dayOfWeek == 26) {
+                fourWeekLi.innerHTML += `<i class="jomeh" data-number=${j}>${formattedNumber}</i>`;
+              }
+              else {
+                fourWeekLi.innerHTML += `<i data-number=${j}>${formattedNumber}</i>`;
+              }
+              dayOfWeek++;
+            }
+            else if (dayOfWeek < 34) {
+              if (dayOfWeek == 33) {
+                fiveWeekLi.innerHTML += `<i class="jomeh" data-number=${j}>${formattedNumber}</i>`;
+              }
+              else {
+                fiveWeekLi.innerHTML += `<i data-number=${j}>${formattedNumber}</i>`;
+              }
+              dayOfWeek++;
+            }
+          }
+          break;
+        }
+      }
+      let fiveWeekI = fiveWeekLi.querySelectorAll("i");
+      if (currentMonth <= 6) {
+        const number = 31;
+        const formattedNumber = number.toLocaleString('fa-IR');
+
+        if (fiveWeekI.length == 6) {
+          fiveWeekLi.innerHTML += `<i class="jomeh" data-number="31">${formattedNumber}</i>`;
+        }
+        else if (fiveWeekI.length < 6) {
+          fiveWeekLi.innerHTML += `<i data-number="31">${formattedNumber}</i>`;
+        }
+      }
+
+      fiveWeekI = fiveWeekLi.querySelectorAll("i");
+
+      if (fiveWeekI.length < 7) {
+        for (let i = fiveWeekI.length; i < 7; i++) {
+          fiveWeekLi.innerHTML += `<i style="visibility: hidden;"></i>`;
+        }
+      }
+
+      EventList[0].forEach(item => {
+        if (item.isHoliday == true) {
+          holiday.push(item.jDay)
+        }
+      })
+      const allDayNumbersI = dayNumbersDiv.querySelectorAll("i");
+      const showDayDetails = document.querySelector(".show-day-details")
+      const showDayDetailsUl = document.querySelector(".show-day-details ul")
+      allDayNumbersI.forEach(item => {
+        if (item.dataset.number == currentDay && saveCurrentMonth == currentMonth && saveCurrentYear == currentYear)
+          item.style.backgroundColor = "blue"
+      });
+
+      allDayNumbersI.forEach(item => {
+        holiday.forEach(element => {
+          if (item.dataset.number == element) {
+            item.classList.add("tatil")
+          }
+        });
+      })
+      functions.addEventOnElem(allDayNumbersI, "click", selectThisI);
+      function selectThisI(e) {
+        console.log(EventList)
+        showDayDetailsUl.innerHTML = "";
+        for (const element of EventList[0]) {
+          if (e.target.dataset.number == element.jDay) {
+            showDayDetailsUl.innerHTML += `<li>${element.text}</li>`;
+          }
+        }
+        allDayNumbersI.forEach(item => {
+          if (item !== e.target)
+            item.classList.remove("active");
+          showDayDetails.classList.remove("active");
+        });
+        document.addEventListener("click", function (event) {
+          if (
+            !event.target.closest(".show-day-details") &&
+            !event.target.closest(".days-number i")
+          ) {
+            allDayNumbersI.forEach(item => {
+              item.classList.remove("active");
+              showDayDetails.classList.remove("active");
+            });
+          }
+        });
+
+        if (e.target.classList.contains("active")) {
+          e.target.classList.remove("active");
+          showDayDetails.classList.remove("active");
+        } else {
+          e.target.classList.add("active");
+          showDayDetails.classList.add("active");
+        }
+
+        const iPosition = e.target.getBoundingClientRect();
+        const parentPosition = dayNumbersDiv.getBoundingClientRect();
+
+        const iTop = iPosition.top - (parentPosition.top - 60);
+        const iRight = iPosition.right - parentPosition.right;
+
+        showDayDetails.style.top = Math.abs(iTop) + 'px';
+        showDayDetails.style.right = Math.abs(iRight) + 'px';
+      }
+    })
+    .catch(error => {
+      console.log('خطا در دریافت داده‌ها:', error);
+    });
+}
+
+displayCalendar();
+
+functions.addEventOnElem(nextMonthBtn, "click", displayNextMonth);
+function displayNextMonth() {
+  if (currentMonth < 12) {
+    currentMonth += 1
+    displayCalendar();
+  }
+  else if (currentMonth == 12) {
+    currentYear += 1;
+    currentMonth = 1;
+    displayCalendar();
+  }
+}
+functions.addEventOnElem(lastMonthBtn, "click", displayLastMonth);
+function displayLastMonth() {
+  if (currentMonth > 1) {
+    currentMonth -= 1
+    displayCalendar();
+  }
+  else if (currentMonth == 1) {
+    currentYear -= 1;
+    currentMonth = 12;
+    displayCalendar();
+  }
+}
+const allMonthContainer = document.querySelector(".show-all-month");
+const allMonthBtn = document.querySelectorAll(".show-all-month button");
+
+functions.addEventOnElem(monthBtn, "click", displayAllMonth);
+function displayAllMonth() {
+  allMonthContainer.classList.toggle("active")
+  monthBtn.classList.toggle("active")
+}
+document.addEventListener('click', function (event) {
+  if (
+    !event.target.closest(".display-month") &&
+    !event.target.closest(".show-all-month")
+  ) {
+    allMonthContainer.classList.remove("active")
+    monthBtn.classList.remove("active")
+  }
+});
+
+functions.addEventOnElem(allMonthBtn, "click", displayThisMonth);
+function displayThisMonth(e) {
+  const monthNumber = e.target.dataset.month;
+  currentMonth = Number(monthNumber);
+  displayCalendar();
+  allMonthContainer.classList.remove("active")
+  monthBtn.classList.remove("active")
+}
+const yearsContainer = document.querySelector(".show-years");
+const allYearBtn = document.querySelectorAll(".show-years button");
+
+functions.addEventOnElem(yearBtn, "click", displayYears);
+function displayYears() {
+  yearsContainer.classList.toggle("active")
+  yearBtn.classList.toggle("active")
+}
+document.addEventListener('click', function (event) {
+  if (
+    !event.target.closest(".display-year") &&
+    !event.target.closest(".show-years")
+  ) {
+    yearsContainer.classList.remove("active")
+    yearBtn.classList.remove("active")
+  }
+});
+
+functions.addEventOnElem(allYearBtn, "click", displayThisYear);
+function displayThisYear(e) {
+  const yearNumber = e.target.dataset.year;
+  currentYear = Number(yearNumber);
+  displayCalendar();
+  yearsContainer.classList.remove("active")
+  yearBtn.classList.remove("active")
+}
+
+functions.addEventOnElem(goTodayBtn, "click", goToToday);
+function goToToday() {
+  currentYear = saveCurrentYear;
+  currentMonth = saveCurrentMonth;
+  displayCalendar();
+}
