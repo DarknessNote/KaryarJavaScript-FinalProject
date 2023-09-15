@@ -1,0 +1,1349 @@
+@import url(fonts.css);
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+:root {
+  /* Colors */
+  --primary-color: #f1f6f9;
+  --secondary-color: #afd3e2;
+  --input-color: #dfe4e9;
+  --button-color: #366ed8;
+  --button-color-2: #ffc436;
+  --button-color-3: #adc4ce;
+  --border-color-1: #0d1282;
+  --border-color-2: #13334c;
+  --border-color-3: #13334c;
+  --border-color-4: #f1f6f9;
+  --border-color-5: #b2b2b2;
+  --hover-color-1: #b9b9b9;
+  --hover-color-2: #eeeeee;
+  --hover-color-3: #fff8a6;
+  --hover-button-color: #07a4b5;
+  --text-hover-1: #fff;
+  --text-hover-2: #1d242b;
+  --text-hover-3: #1d242b;
+  --selected-color: #19376d;
+  --text-color-1: #fff;
+  --text-color-2: #1d242b;
+  --text-color-2: #1d242b;
+  --icon-color-1: #393e46;
+  --icon-color-2: #0d1282;
+  --icon-color-3: #f1f6f9;
+  --apply-color-1: #d3de32;
+  --apply-color-hover-1: #c3edc0;
+  --cancell-color-1: #ff2442;
+  --cancell-color-hover-1: #ff8787;
+  --background-color-low-opaciry: rgba(0, 0, 0, 0.5);
+  --background-color: #e3f4f4;
+  --tag-background-color: #dfdfde;
+
+  /* Typography */
+  --font-family: Peyda;
+
+  /* Radius */
+  --primary-radius: 20px;
+  --secondary-radius: 15px;
+
+  /* Transition */
+  --transition-1: 0.25s ease;
+  --transition-2: 0.5s ease;
+}
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+img,
+span,
+input,
+button {
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button {
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+input {
+  width: 100%;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+h3,
+span,
+label {
+  color: var(--text-color-2);
+}
+
+body {
+  background-color: var(--secondary-color);
+  font-family: var(--font-family);
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+.body-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin-block: 50px;
+}
+
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+header {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header .title img {
+  width: 40px;
+  border-radius: 15px;
+}
+header .title h1 {
+  font-size: 25px;
+  font-family: peyda;
+  font-weight: 900;
+}
+
+/*-----------------------------------*\
+  #HEADER #SETTINGS
+\*-----------------------------------*/
+
+header .settings {
+  position: relative;
+  font-size: 10px;
+}
+header .settings button {
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .settings button ion-icon {
+  font-size: 26px;
+  color: var(--icon-color-3);
+}
+
+header .settings button:hover {
+  background-color: var(--hover-button-color);
+  opacity: 0.8;
+}
+
+.settings .settings-container .caret-up {
+  position: absolute;
+  left: 8px;
+  top: 25px;
+  font-size: 20px;
+  color: var(--icon-color-2);
+}
+.settings .settings-container ion-icon {
+  color: var(--icon-color-2);
+  font-size: 13px;
+}
+header .settings .settings-container {
+  display: none;
+}
+.settings .settings-container.active {
+  display: block;
+}
+.settings .settings-container .settings-bar {
+  position: absolute;
+  left: -45px;
+  width: 200px;
+  height: 400px;
+  border-radius: 7px;
+  background-color: var(--primary-color);
+  color: var(--text-color-2);
+  border: 1px var(--border-color-1) solid;
+  padding: 20px;
+  z-index: 10;
+}
+.settings-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.settings-container .settings-bar .dark-mode {
+  display: flex;
+  justify-content: space-between;
+}
+.settings-bar .dark-mode .dark-mode-toggle {
+  display: flex;
+  gap: 10px;
+}
+.settings-bar .dark-mode .dark-mode-toggle ion-icon {
+  color: var(--icon-color-1);
+  font-size: 20px;
+}
+.dark-mode .dark-mode-toggle input[type="checkbox"] {
+  position: relative;
+  width: 30px;
+  height: 15px;
+  -webkit-appearance: none;
+  background-color: var(--input-color);
+  border: 1px var(--border-color-3) solid;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5 rgba(0, 0, 0, 0.2);
+  transition: var(--transition-1);
+}
+.dark-mode .dark-mode-toggle input[type="checkbox"]:checked {
+  background-color: var(--selected-color);
+}
+.dark-mode .dark-mode-toggle input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  top: -1px;
+  left: -1px;
+  background-color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: var(--transition-1);
+}
+.dark-mode .dark-mode-toggle input[type="checkbox"]:checked::before {
+  left: 15px;
+}
+
+.settings-bar-container .change-fonts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.change-fonts .dropdown-fonts {
+  width: 5rem;
+  position: relative;
+}
+
+.dropdown-fonts .select {
+  background: var(--input-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px var(--border-color-2) solid;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: var(--text-color-3);
+}
+select:hover {
+  background: var(--hover-color-1);
+}
+.font-list {
+  padding: 5px 10px;
+  background: var(--input-color);
+  border-radius: 5px;
+  border: 1px var(--border-color-2) solid;
+  position: absolute;
+  top: 3em;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  opacity: 0;
+  display: none;
+  transition: 0.2s;
+  z-index: 1;
+}
+.font-list li {
+  padding: 5px;
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text-color-3);
+}
+.f-peyda {
+  font-family: Peyda;
+}
+.f-pelak {
+  font-family: Pelak;
+}
+.f-iransans {
+  font-family: IRANSansX;
+}
+.f-iranyekan {
+  font-family: IranYekan;
+}
+.f-morabba {
+  font-family: Morabba;
+}
+.f-kalameh {
+  font-family: Kalameh;
+}
+.f-yekanbakh {
+  font-family: YekanBakh;
+}
+.font-list li:hover {
+  color: var(--text-hover-3);
+  background-color: var(--hover-color-1);
+  border: 1px var(--border-color-2) solid;
+}
+.font-list .active {
+  background: var(--selected-color);
+  color: #f6f4eb;
+}
+
+.font-list-open {
+  display: block;
+  opacity: 1;
+}
+
+.change-background {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.change-background .colors,
+.change-background .images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+.change-background button {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  background: var(--secondary-color);
+  border: 2px rgb(209, 209, 209) solid;
+}
+.change-background .img-btn {
+  background-position: center;
+  background-size: cover;
+}
+.change-background span.net-notice {
+  display: none;
+}
+
+/*-----------------------------------*\
+  #MAIN
+\*-----------------------------------*/
+main {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.right-container {
+  width: 25%;
+}
+.left-continer {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.mid-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+/*-----------------------------------*\
+ #MAIN #SEARCH BAR
+\*-----------------------------------*/
+main .search-bar {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  gap: 10px;
+  padding: 20px;
+}
+main .search-bar .search-input {
+  display: flex;
+  background-color: var(--input-color);
+  border-radius: 20px;
+  padding: 10px;
+  gap: 5px;
+  flex-grow: 1;
+}
+main .search-bar .search-input input[type="text"] {
+  border: none;
+  font-family: var(--font-family);
+}
+main .search-bar button {
+  width: 100px;
+  background-color: var(--button-color);
+  color: var(--text-color-1);
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  font-family: var(--font-family);
+  font-weight: bold;
+  transition: var(--transition-1);
+}
+main .search-bar button:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-hover-1);
+}
+
+.time-and-weather {
+  display: flex;
+  gap: 20px;
+}
+
+.time,
+.weather {
+  position: relative;
+  width: 49%;
+  height: 150px;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+  padding: 10px;
+  color: var(--text-color-2);
+}
+.time {
+  display: flex;
+  flex-direction: column;
+}
+.time-header {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.time-header button {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: var(--text-color-2);
+}
+.time-header button:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-hover-1);
+}
+.time .change-time-zone,
+.weather .change-weather-zone {
+  display: none;
+  position: absolute;
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: #19376d;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+.time .change-time-zone.active,
+.weather .change-weather-zone.active {
+  display: flex;
+}
+
+.time-settings-container,
+.weather-settings-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.time-settings-container .select,
+.weather-settings-container .select {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: var(--button-color);
+  border-radius: 10px;
+  width: 90%;
+  border: 1px var(--border-color-4) solid;
+  color: var(--text-color-1);
+}
+.time-settings-container input {
+  color: var(--text-color-1);
+}
+.time-settings-container input::placeholder {
+  color: var(--text-color-1);
+  font-size: 10px;
+}
+
+.zone-list {
+  display: none;
+  height: 80px;
+  width: 90%;
+  overflow-y: scroll;
+  font-size: 10px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+.zone-list.active {
+  display: block;
+}
+.zone-list li {
+  padding: 5px;
+  font-size: 15px;
+  overflow-x: hidden;
+}
+.zone-list li:hover {
+  background-color: var(--hover-color-1);
+}
+.time-settings-button,
+.weather-settings-button {
+  width: 90%;
+  display: flex;
+  gap: 10px;
+}
+.time-settings-button.disable,
+.weather-settings-button.disable {
+  display: none;
+}
+.time-settings-button button,
+.weather-settings-button button {
+  width: 90%;
+  padding: 5px;
+  border-radius: 5px;
+}
+.time-zone-apply,
+.weather-zone-apply {
+  background-color: var(--apply-color-1);
+}
+.time-zone-cancell,
+.weather-zone-cancell {
+  background-color: var(--cancell-color-1);
+  color: var(--text-color-1);
+}
+.time-zone-apply:hover,
+.weather-zone-apply:hover {
+  background-color: var(--apply-color-hover-1);
+}
+.time-zone-cancell:hover,
+.weather-zone-cancell:hover {
+  background-color: var(--cancell-color-hover-1);
+  color: var(--text-color-1);
+}
+.time-zone-title {
+  font-size: 10px;
+}
+.times {
+  height: 100%;
+  padding-block-start: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.show-time {
+  font-size: 30px;
+  font-weight: 900;
+}
+.timer a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 3px;
+}
+.timer a:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-hover-1);
+}
+.timer span {
+  font-size: 10px;
+}
+.weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+.weather .settings-and-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+}
+.weather .settings-and-title button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text-color-2);
+}
+.weather .settings-and-title button:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-hover-1);
+}
+.weather .settings-and-title .location-title {
+  font-size: 10px;
+}
+.weather-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  padding-block-start: 5px;
+}
+.weather .show-weather {
+  display: flex;
+  flex-direction: column;
+}
+.weather .show-weather .temperature-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.weather .show-weather .temperature-display .temperature {
+  font-size: 30px;
+  font-weight: 900;
+  padding-top: 10px;
+}
+.weather .show-weather .temperature-display ion-icon {
+  font-size: 30px;
+  --ionicon-stroke-width: 56px;
+}
+.weather .show-weather .description {
+  font-size: 10px;
+  text-align: center;
+}
+.weather .perfect-weather a {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+.weather .perfect-weather a:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-hover-1);
+}
+.weather .perfect-weather span {
+  font-size: 10px;
+}
+
+.favorite-sites {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.favorite-sites .f-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.favorite-sites .f-site,
+.favorite-sites .f-site-colum {
+  height: 80px;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+}
+.favorite-sites .f-site-colum {
+  position: relative;
+  width: 20%;
+}
+.favorite-sites .f-site {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+}
+.favorite-sites .f-site:hover {
+  cursor: pointer;
+  background-color: var(--hover-color-2);
+}
+.favorite-sites .f-site > ion-icon {
+  font-size: 30px;
+  color: var(--secondary-color);
+}
+.f-site-added {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.f-site-added span {
+  font-size: 10px;
+}
+.favsite-edite,
+.favsite-trash {
+  width: 20px;
+  height: 20px;
+  display: inline;
+  position: absolute;
+  z-index: 4;
+  top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  color: var(--text-color-2);
+  visibility: hidden;
+  pointer-events: auto;
+}
+.favsite-edite ion-icon,
+.favsite-trash ion-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.favsite-edite {
+  right: 10px;
+}
+.favsite-trash {
+  left: 10px;
+}
+.favsite-edite:hover {
+  color: var(--text-hover-1);
+  background-color: var(--hover-button-color);
+}
+.favsite-trash {
+  left: 10px;
+}
+.favsite-trash:hover {
+  color: var(--text-hover-1);
+  background-color: var(--hover-button-color);
+}
+.add-fav-site-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background-color-low-opaciry);
+  z-index: 10;
+  display: none;
+}
+.add-fav-site-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-fav-site-form-input {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  gap: 20px;
+}
+.add-fav-site-form-input > button {
+  width: 20px;
+  height: 20px;
+  align-self: flex-start;
+}
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.inputs-container input {
+  color: var(--text-color-2);
+}
+.add-fav-site-form-input ion-icon {
+  color: var(--text-color-2);
+}
+.url-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.title-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.add-fav-site-form-input input {
+  outline: 1px solid var(--border-color-1);
+  padding: 10px;
+  border-radius: 10px;
+}
+.title-submit input,
+.title-submit > button {
+  width: 48%;
+}
+.title-submit > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--button-color);
+  padding: 11px;
+  border-radius: 10px;
+  color: var(--text-color-1);
+}
+.delete-fav-site-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  display: none;
+}
+.delete-modal-centerd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+}
+.delete-modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-color-1);
+  border-radius: 20px;
+  gap: 20px;
+}
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+.buttons-container button {
+  width: 49%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--text-color-1);
+}
+.delete-fav-btn {
+  background-color: var(--cancell-color-1);
+}
+.delete-fav-btn:hover {
+  background-color: var(--cancell-color-hover-1);
+}
+.cancell-fav-btn {
+  background-color: var(--button-color);
+}
+.cancell-fav-btn:hover {
+  background-color: var(--hover-button-color);
+}
+.todo-and-continer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.solar-calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  padding: 10px;
+  gap: 10px;
+  position: relative;
+}
+.Header-calendar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Header-calendar button {
+  color: var(--text-color-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Header-calendar .arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.Header-calendar .arrow:hover {
+  background-color: var(--button-color);
+  color: var(--text-color-2);
+}
+.display-month,
+.display-year {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+}
+.display-month:hover,
+.display-year:hover {
+  background-color: var(--hover-button-color);
+  color: var(--text-color-1);
+}
+.display-month.active,
+.display-year.active {
+  width: 80px;
+  height: 30px;
+  background-color: var(--hover-button-color);
+  color: var(--text-color-1);
+}
+
+.days-week {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.days-week li,
+.days-number i {
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
+  border-radius: 15px;
+  color: var(--text-color-2);
+}
+.days-number {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.days-number i {
+  cursor: pointer;
+}
+.days-number i.tatil {
+  color: var(--text-color-1);
+}
+.days-number i.tatil.active {
+  color: var(--text-color-1);
+  color: var(--text-color-2);
+}
+
+.days-number .jomeh.active,
+.tatil.active {
+  background-color: white;
+  color: #ed2b2a;
+  border: 1px solid #ed2b2a;
+}
+.days-number i.active {
+  border: 1px solid var(--border-color-1);
+}
+
+.day {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.go-today {
+  width: 100px;
+  padding: 10px;
+  background-color: var(--button-color);
+  color: var(--text-color-1);
+  border-radius: 10px;
+  display: none;
+}
+.go-today:hover {
+  background-color: var(--hover-button-color);
+}
+
+.show-all-month,
+.show-years {
+  position: absolute;
+  top: 60px;
+  right: auto;
+  width: 90%;
+  height: 200px;
+  padding: 10px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-color-1);
+  border-radius: 15px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+.show-all-month.active,
+.show-years.active {
+  display: flex;
+}
+
+.month,
+.year {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.month button,
+.year button {
+  width: 130px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--border-color-2);
+}
+.month button:hover,
+.year button:hover {
+  background-color: var(--hover-color-1);
+  border: 1px solid var(--border-color-2);
+}
+.show-day-details {
+  position: absolute;
+  background-color: var(--secondary-color);
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color-1);
+  top: 110px;
+  right: 50px;
+  z-index: 5;
+  display: none;
+}
+.show-day-details.active {
+  display: block;
+}
+.show-day-details li {
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.days-number .jomeh,
+.tatil {
+  background-color: #ed2b2a;
+  color: var(--text-color-1);
+}
+.todo-list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  padding: 20px;
+}
+.todo-cantainer {
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todo-header h3 {
+  font-size: 15px;
+  font-weight: 900;
+}
+.todo-header .visibility,
+.blur-todo-list-modal .visibility {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--button-color);
+  border-radius: 10px;
+  color: var(--text-color-1);
+  font-size: 10px;
+}
+.todo-header .visibility ion-icon,
+.blur-todo-list-modal .visibility ion-icon {
+  font-size: 15px;
+}
+.todo-header .visibility:hover,
+.blur-todo-list-modal .visibility:hover {
+  background-color: var(--hover-button-color);
+}
+.todos-sartable-list {
+  height: 320px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  justify-self: flex-start;
+}
+.todo-sartable {
+  border-top: 1px solid var(--border-color-1);
+}
+.todos-sartable-list .todo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-block: 10px;
+}
+.todos-sartable-list .todo .todo-right,
+.todos-sartable-list .todo .todo-left {
+  display: flex;
+  align-items: center;
+}
+.todos-sartable-list .todo .todo-right {
+  width: 80%;
+  gap: 5px;
+}
+.todos-sartable-list .todo .todo-left {
+  gap: 10px;
+}
+.todo .todo-right ion-icon {
+  font-size: 25px;
+  color: var(--icon-color-1);
+}
+.todo .todo-right input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  background-color: var(--input-color);
+  border: 2px var(--border-color-5) solid;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: var(--transition-1);
+}
+.todo .todo-right input[type="checkbox"]:checked {
+  background-color: #272829;
+}
+.todo.red .todo-right input[type="checkbox"] {
+  background-color: #fd8a8a;
+  border: 2px #c70039 solid;
+}
+.todo.red .todo-right input[type="checkbox"]:checked {
+  background-color: #fc2947;
+}
+.todo.green .todo-right input[type="checkbox"] {
+  background-color: #e9ffc2;
+  border: 2px #a2c579 solid;
+}
+.todo.green .todo-right input[type="checkbox"]:checked {
+  background-color: #d2de32;
+}
+.todo.yellow .todo-right input[type="checkbox"] {
+  background-color: #fff2cc;
+  border: 2px #f2be22 solid;
+}
+.todo.yellow .todo-right input[type="checkbox"]:checked {
+  background-color: #ffc436;
+}
+.todo .todo-right [type="checkbox"] {
+  width: 20px;
+}
+.todo .todo-right .title-and-tag h3 {
+  font-size: 15px;
+}
+.todo .todo-right .title-and-tag span {
+  font-size: 10px;
+  background-color: var(--tag-background-color);
+  padding-inline: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+.todo .todo-left button {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  visibility: hidden;
+}
+.todo .todo-left button ion-icon {
+  color: var(--text-color-2);
+}
+.todo .todo-left button:hover {
+  background-color: var(--hover-color-1);
+  color: var(--text-hover-1);
+}
+.delete-todo {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  display: none;
+}
+.delete-todo button {
+  width: 49%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+}
+.delete-todo .todo-delete {
+  background-color: var(--cancell-color-1);
+  color: var(--text-color-1);
+}
+.delete-todo .todo-undelete {
+  background-color: var(--input-color);
+}
+.todo-list-inputs {
+  width: 100%;
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+}
+.add-todos-inputs {
+  width: 100%;
+  background-color: var(--background-color);
+  border-radius: 10px;
+}
+.add-todos-inputs .line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color-1);
+}
+.add-todos-inputs > input {
+  padding: 10px;
+}
+.todo-tag {
+  color: var(--text-color-3);
+}
+.add-todo-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+.add-todo-tag > input {
+  height: 15px;
+}
+.add-todo-tag > input::placeholder {
+  font-size: 10px;
+}
+.todo-tag-color {
+  display: flex;
+  gap: 5px;
+}
+.todo-tag-color input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  background-color: var(--input-color);
+  border: 1px var(--border-color-1) solid;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: var(--transition-1);
+}
+.todo-tag-color input[type="checkbox"]:nth-of-type(1) {
+  background-color: #fd8a8a;
+}
+.todo-tag-color input[type="checkbox"]:nth-of-type(2) {
+  background-color: #fff2cc;
+}
+.todo-tag-color input[type="checkbox"]:nth-of-type(3) {
+  background-color: #e9ffc2;
+}
+.todo-tag-color input[type="checkbox"]:nth-of-type(1):checked {
+  background-color: #fc2947;
+}
+.todo-tag-color input[type="checkbox"]:nth-of-type(2):checked {
+  background-color: #ffc436;
+}
+.todo-tag-color input[type="checkbox"]:nth-of-type(3):checked {
+  background-color: #d2de32;
+}
+.submit-todo {
+  width: 50px;
+  background-color: var(--button-color-2);
+  border-radius: 10px;
+}
+.submit-todo:hover {
+  background-color: var(--hover-color-3);
+}
+.submit-edite {
+  width: 50px;
+  flex-direction: column;
+  gap: 10px;
+  display: none;
+}
+.apply-edit-todo,
+.cancell-edit-todo {
+  width: 100%;
+  height: 49%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.apply-edit-todo {
+  background-color: var(--button-color);
+  color: var(--text-color-1);
+}
+.cancell-edit-todo {
+  background-color: var(--button-color-3);
+  color: var(--text-color-1);
+}
+.blur-todo-list-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  visibility: hidden;
+}
+.blur-todo-list-modal .visibility {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 3;
+  visibility: hidden;
+}
+.todo-and-calender {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

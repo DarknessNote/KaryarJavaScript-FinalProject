@@ -574,7 +574,7 @@
         </div>
       </main>
     </div>
-    <!--------------------- Modals Full Body --------------------->
+    <!--------------------- Modals Body --------------------->
     <div class="add-fav-site-modal">
       <div class="add-fav-site-form">
         <div class="add-fav-site-form-input">
@@ -641,6 +641,24 @@
         </div>
       </div>
     </div>
+    <script>
+      window.onload = function () {
+        if (!window.loaded) {
+          var width = window.innerWidth;
+          if (width >= 1024) {
+            window.location.href = "desktop.html";
+          }
+        }
+      };
+      function checkWidth() {
+        var width = window.innerWidth;
+        if (width > 1024) {
+          window.location.href = "desktop.html";
+        }
+      }
+      checkWidth();
+      window.addEventListener("resize", checkWidth);
+    </script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

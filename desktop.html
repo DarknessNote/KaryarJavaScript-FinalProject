@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/desktop.css" />
+    <title>دستیار</title>
+  </head>
+  <body>
+    <div class="body-container">
+      <header>
+        <!--------------------- Title --------------------->
+        <div class="title">
+          <img src="./assets/logo.webp" alt="logo" />
+          <h1>دستیار</h1>
+        </div>
+
+        <!--------------------- Settings --------------------->
+        <div class="settings">
+          <button><ion-icon name="settings-outline"></ion-icon></button>
+          <div class="settings-container">
+            <ion-icon name="caret-up-outline" class="caret-up"></ion-icon>
+            <!--- Settings Bar --->
+            <div class="settings-bar">
+              <div class="settings-bar-container">
+                <!--- Settings Dark Mode --->
+                <div class="dark-mode">
+                  <span>دارک مود</span>
+                  <div class="dark-mode-toggle">
+                    <ion-icon name="moon-outline"></ion-icon>
+                    <input
+                      type="checkbox"
+                      name="dark-mode"
+                      data-mode-checkbox
+                    />
+                    <ion-icon name="sunny-outline"></ion-icon>
+                  </div>
+                </div>
+                <!--- Settings Change Fonts --->
+                <div class="change-fonts">
+                  <span>فونت</span>
+                  <div class="dropdown-fonts">
+                    <div class="select">
+                      <span class="selected">پیدا</span>
+                      <div class="caret">
+                        <ion-icon name="caret-down-outline"></ion-icon>
+                      </div>
+                    </div>
+                    <ul class="font-list">
+                      <li class="f-peyda active" data-font="Peyda">پیدا</li>
+                      <li class="f-pelak" data-font="Pelak">پلاک</li>
+                      <li class="f-iransans" data-font="IRANSansX">
+                        ایران سنس
+                      </li>
+                      <li class="f-morabba" data-font="Morabba">مربع</li>
+                      <li class="f-kalameh" data-font="Kalameh">کلمه</li>
+                      <li class="f-yekanbakh" data-font="YekanBakh">یکان یخ</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!--- Settings Change Background --->
+                <div class="change-background">
+                  <span>انتخاب پس زمینه</span>
+
+                  <!--- Background Colors--->
+                  <div class="style colors">
+                    <button type="button" data-color="#96B6C5"></button>
+                    <button type="button" data-color="#ADC4CE"></button>
+                    <button type="button" data-color="#EEE0C9"></button>
+                    <button type="button" data-color="#F1F0E8"></button>
+
+                    <button type="button" data-color="#7286D3"></button>
+                    <button type="button" data-color="#8EA7E9"></button>
+                    <button type="button" data-color="#E5E0FF"></button>
+                    <button type="button" data-color="#FFF2F2"></button>
+
+                    <button type="button" data-color="#716F81"></button>
+                    <button type="button" data-color="#F6AE99"></button>
+                    <button type="button" data-color="#B97A95"></button>
+                    <button type="button" data-color="#716F81"></button>
+
+                    <button type="button" data-color="#900C3F"></button>
+                    <button type="button" data-color="#C70039"></button>
+                    <button type="button" data-color="#F94C10"></button>
+                    <button type="button" data-color="#F8DE22"></button>
+
+                    <button type="button" data-color="#222831"></button>
+                    <button type="button" data-color="#393E46"></button>
+                    <button type="button" data-color="#FFD369"></button>
+                    <button type="button" data-color="#F05454"></button>
+                  </div>
+
+                  <!--- Background Images--->
+                  <div class="style images">
+                    <button
+                      type="button"
+                      class="img-btn"
+                      data-img="https://wallpapercave.com/download/4k-pc-wallpapers-wp4676582"
+                    ></button>
+                    <button
+                      type="button"
+                      class="img-btn"
+                      data-img="https://wallpapercave.com/download/4k-pc-wallpapers-wp4676613"
+                    ></button>
+                    <button
+                      type="button"
+                      class="img-btn"
+                      data-img="https://wallpapercave.com/download/your-name-wallpapers-wp1937307"
+                    ></button>
+                    <button
+                      type="button"
+                      class="img-btn"
+                      data-img="https://wallpapercave.com/download/mercedes-amg-a-45-2019-wallpapers-wp4299686"
+                    ></button>
+                  </div>
+                  <span class="net-notice"
+                    >برای مشاهده تصاویر پس زمینه باید به اینترنت متصل
+                    باشید</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="right-container">
+          <div class="todo-list">
+            <div class="todo-cantainer">
+              <div class="todo-header">
+                <h3 class="todo-list-title">دست نویس</h3>
+                <button class="visibility" data-visible-todo>
+                  مخفی کن
+                  <ion-icon name="eye-off-outline"></ion-icon>
+                </button>
+              </div>
+              <div class="todos-sartable-list"></div>
+              <div class="todo-list-inputs">
+                <div class="add-todos-inputs">
+                  <input
+                    type="text"
+                    name="add-todo-title"
+                    placeholder="عنوان کار جدید"
+                    data-add-todo-title
+                  />
+                  <div class="line"></div>
+                  <div class="add-todo-tag">
+                    <ion-icon name="pricetag-outline"></ion-icon>
+                    <input
+                      type="text"
+                      name="add-todo-tag"
+                      placeholder="برچسب کار"
+                      data-add-todo-tag
+                    />
+                    <div class="todo-tag-color">
+                      <input
+                        type="checkbox"
+                        class="tag-red"
+                        id="tag-red"
+                        data-tagcolor="red"
+                      />
+                      <input
+                        type="checkbox"
+                        class="tag-yellow"
+                        id="tag-yellow"
+                        data-tagcolor="yellow"
+                      />
+                      <input
+                        type="checkbox"
+                        class="tag-green"
+                        id="tag-green"
+                        data-tagcolor="green"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <button class="submit-todo">
+                  <ion-icon name="add-outline"></ion-icon>
+                </button>
+                <div class="submit-edite">
+                  <button class="apply-edit-todo" data-apply-edit-todo>
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                  </button>
+                  <button class="cancell-edit-todo" data-cancell-edit-todo>
+                    <ion-icon name="close-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="blur-todo-list-modal">
+              <button class="visibility" data-hidden-todo>
+                نمایش بده
+                <ion-icon name="eye-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mid-container">
+          <!--------------------- Search Bar --------------------->
+          <div class="search-bar">
+            <div class="search-input">
+              <img
+                src="./assets/Icons/search_FILL0_wght400_GRAD0_opsz48.svg"
+                alt="search-icon"
+                width="20px"
+              />
+              <input
+                type="text"
+                name="search-input"
+                placeholder="جستجو در گوگل"
+                data-search-input
+              />
+              <img
+                src="./assets/google-logo.png"
+                alt="google-logo"
+                width="20px"
+              />
+            </div>
+            <button class="search-btn">جستجو</button>
+          </div>
+          <div class="favorite-sites">
+            <div class="f-row">
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="1">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="2">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="3">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="4">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="5">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="6">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="7">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="8">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="9">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="9">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="9">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+              <div class="f-site-colum">
+                <button class="favsite-edite" data-edit-favsite>
+                  <ion-icon name="create-outline"></ion-icon>
+                </button>
+                <button class="favsite-trash" data-delete-favsite>
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+                <div class="f-site" data-favsite="9">
+                  <ion-icon
+                    class="add-favsite-icon"
+                    name="add-outline"
+                  ></ion-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="left-continer">
+          <div class="time-and-weather">
+            <!--------------------- Times --------------------->
+            <div class="time">
+              <div class="time-header">
+                <button><ion-icon name="settings-outline"></ion-icon></button>
+                <div class="time-zone-title"></div>
+              </div>
+              <div class="change-time-zone">
+                <div class="time-settings-container">
+                  <div class="select">
+                    <input
+                      type="text"
+                      name="search-time-zone"
+                      id="search-time-zone"
+                      placeholder="جستجو کنید"
+                    />
+                  </div>
+                  <ul class="zone-list"></ul>
+                  <div class="time-settings-button">
+                    <button class="time-zone-apply" data-timezone-apply>
+                      ثبت
+                    </button>
+                    <button class="time-zone-cancell" data-timezone-cancell>
+                      انصراف
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="times">
+                <div class="show-time"></div>
+                <div class="timer">
+                  <a href="https://www.bahesab.ir/time/timer">
+                    <ion-icon name="stopwatch-outline"></ion-icon>
+                    <span>زمان سنج</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!--------------------- Weather --------------------->
+            <div class="weather">
+              <div class="settings-and-title">
+                <button><ion-icon name="settings-outline"></ion-icon></button>
+                <div class="location-title">تهران</div>
+              </div>
+              <div class="change-weather-zone">
+                <div class="weather-settings-container">
+                  <div class="select">تهران</div>
+                  <ul class="zone-list"></ul>
+
+                  <div class="weather-settings-button">
+                    <button class="weather-zone-apply" data-weather-zone-apply>
+                      ثبت
+                    </button>
+                    <button
+                      class="weather-zone-cancell"
+                      data-weather-zone-cancel
+                    >
+                      انصراف
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="weather-div">
+                <div class="show-weather">
+                  <div class="temperature-display">
+                    <div class="temperature"></div>
+                    <ion-icon name="sunny-outline"></ion-icon>
+                  </div>
+                  <div class="description"></div>
+                </div>
+                <div class="perfect-weather">
+                  <a href="https://www.delgarm.com/weather">
+                    <ion-icon name="cloud-outline"></ion-icon>
+                    <span>پیش بیتی کامل</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="solar-calendar">
+            <div class="Header-calendar">
+              <button class="arrow" data-last-month>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+              </button>
+              <button class="display-month" data-display-month>
+                شهریور
+                <ion-icon name="caret-down-outline"></ion-icon>
+              </button>
+              <button class="display-year" data-display-year>
+                1401
+                <ion-icon name="caret-down-outline"></ion-icon>
+              </button>
+              <button class="arrow" data-nex-month>
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </button>
+            </div>
+            <ul class="days-week">
+              <li>ش</li>
+              <li>ی</li>
+              <li>د</li>
+              <li>س</li>
+              <li>چ</li>
+              <li>پ</li>
+              <li>ج</li>
+            </ul>
+            <ul class="days-number">
+              <li class="day first-week"></li>
+              <li class="day second-week"></li>
+              <li class="day third-week"></li>
+              <li class="day forth-week"></li>
+              <li class="day fifth-week"></li>
+              <li class="day sixth-week"></li>
+            </ul>
+            <div class="show-day-details">
+              <ul>
+                <li>جشن نوروز</li>
+                <li>روز اول</li>
+              </ul>
+            </div>
+            <button class="go-today">برو به امروز</button>
+            <div class="show-all-month">
+              <div class="month bahar-month">
+                <button data-month="1">فروردین</button>
+                <button data-month="2">اردیبهشت</button>
+                <button data-month="3">خرداد</button>
+              </div>
+              <div class="month tabestan-month">
+                <button data-month="4">تیر</button>
+                <button data-month="5">مرداد</button>
+                <button data-month="6">شهریور</button>
+              </div>
+              <div class="month paeiz-month">
+                <button data-month="7">مهر</button>
+                <button data-month="8">آبان</button>
+                <button data-month="9">آذر</button>
+              </div>
+              <div class="month zemestan-month">
+                <button data-month="10">دی</button>
+                <button data-month="11">بهمن</button>
+                <button data-month="12">اسفند</button>
+              </div>
+            </div>
+            <div class="show-years">
+              <div class="year">
+                <button data-year="1398">۱۳۹۸</button>
+                <button data-year="1399">۱۳۹۹</button>
+                <button data-year="1400">۱۴۰۰</button>
+              </div>
+              <div class="year">
+                <button data-year="1401">۱۴۰۱</button>
+                <button data-year="1402">۱۴۰۲</button>
+                <button data-year="1403">۱۴۰۳</button>
+              </div>
+              <div class="year">
+                <button data-year="1404">۱۴۰۴</button>
+                <button data-year="1405">۱۴۰۵</button>
+                <button data-year="1406">۱۴۰۶</button>
+              </div>
+              <div class="year">
+                <button data-year="1407">۱۴۰۷</button>
+                <button data-year="1408">۱۴۰۸</button>
+                <button data-year="1409">۱۴۰۹</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!--------------------- Modals Body --------------------->
+    <div class="add-fav-site-modal">
+      <div class="add-fav-site-form">
+        <div class="add-fav-site-form-input">
+          <button data-close-fav-inputs>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <h3>افزودن سایت موردعلاقه</h3>
+          <div class="inputs-container">
+            <div class="url-input">
+              <label for="url-input">آدرس اینترنتی</label>
+              <input
+                type="text"
+                name="url-input"
+                placeholder="www.google.com"
+                data-fav-url-input
+              />
+            </div>
+            <label for="title-input">عنوان</label>
+            <div class="title-submit">
+              <input
+                type="text"
+                name="title-input"
+                placeholder="حداکثر ۲۰ کارکتر"
+                data-fav-title-input
+              />
+              <button type="submit" data-submit-fav-input>
+                افزودن
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/windows/32/ffffff/enter-key.png"
+                  alt="enter-key"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="delete-fav-site-modal">
+      <div class="delete-modal-centerd">
+        <div class="delete-modal-container">
+          <h3>آیا مطمئنی که می خواهی <span></span> رو پاک کنی</h3>
+          <div class="buttons-container">
+            <button class="delete-fav-btn" data-delete-fav-btn>
+              حذف
+              <img
+                width="32"
+                height="32"
+                src="https://img.icons8.com/windows/32/ffffff/enter-key.png"
+                alt="enter-key"
+              />
+            </button>
+            <button class="cancell-fav-btn" data-cancell-fav-btn>
+              لغو
+              <img
+                width="32"
+                height="32"
+                src="https://img.icons8.com/windows/32/ffffff/esc.png"
+                alt="esc"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.onload = function () {
+        if (!window.loaded) {
+          var width = window.innerWidth;
+          if (width <= 1024) {
+            window.location.href = "index.html";
+          }
+          window.loaded = true;
+        }
+      };
+      function checkWidth() {
+        var width = window.innerWidth;
+        if (width < 1024) {
+          window.location.href = "index.html";
+        }
+      }
+      checkWidth();
+      window.addEventListener("resize", checkWidth);
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="./js/persian-date.min.js"></script>
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

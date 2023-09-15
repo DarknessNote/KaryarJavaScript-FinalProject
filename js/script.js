@@ -1,17 +1,7 @@
 //To enter frequently used functions
 
 import * as functions from "./functions.js";
-// const main = document.querySelector("main");
-// window.addEventListener("DOMContentLoaded", function () {
-//   if (window.innerWidth > 1024) {
-//     main.innerHTML = "";
-//   }
-// });
-// window.addEventListener("resize", function () {
-//   if (window.innerWidth > 1024) {
-//     main.innerHTML = "";
-//   }
-// });
+
 //To Save Settings
 let [saveMode, saveFonts, saveNameFonts, saveBackgroundColor] = [null];
 function saveSettings() {
@@ -1387,7 +1377,7 @@ function displayCalendar() {
   EventList.length = 0;
   shamsiEvent(currentYear)
     .then(() => {
-      EventList.push(monthEvent[0]['1402'][(currentMonth - 1)].events)
+      EventList.push(monthEvent[0][currentYear][(currentMonth - 1)].events)
       if (currentYear != saveCurrentYear || currentMonth != saveCurrentMonth) {
         goTodayBtn.style.display = "block";
       }
